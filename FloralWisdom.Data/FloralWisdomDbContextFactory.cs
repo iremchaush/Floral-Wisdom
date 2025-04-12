@@ -11,8 +11,9 @@ public class ArtGalleryDbContextFactory : IDesignTimeDbContextFactory<FloralWisd
     {
         var optionsBuilder = new DbContextOptionsBuilder<FloralWisdomDbContext>();
 
-        optionsBuilder.UseSqlServer("Server=DESKTOP-4PGVMQP\\SQLEXPRESS;Database=ArtGalleryDb;Trusted_Connection=True;TrustServerCertificate=True;");
+        optionsBuilder.UseSqlServer("Server=localhost,1433;Database=FloralWisdom;User Id=sa;Password=#AniBonbon128;TrustServerCertificate=True;");
 
-        return new FloralWisdomDbContext(optionsBuilder.Options);
+
+		return new FloralWisdomDbContext(optionsBuilder.Options);
     }
 }

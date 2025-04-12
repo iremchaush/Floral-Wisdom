@@ -26,7 +26,7 @@ namespace FloralWisdom.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-4PGVMQP\\SQLEXPRESS;Database=FloralWisdom;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=localhost,1433;Database=FloralWisdom;User Id=sa;Password=#AniBonbon128;TrustServerCertificate=True;");
         }
     }
 }

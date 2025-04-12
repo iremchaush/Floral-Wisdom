@@ -6,9 +6,9 @@ namespace FloralWisdom.Services.Interfaces
     interface IUserService
     {
         Task<List<User>> GetAllAsync();
-        Task<User?> GetByIdAsync(int id);
+        Task<User?> GetByIdAsync(string id);
         Task AddAsync(User user);
         Task UpdateAsync(User user);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string id);
     }
 }

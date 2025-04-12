@@ -1,0 +1,15 @@
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\bin\Debug\net9.0\FloralWisdom.Models.deps.json
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\bin\Debug\net9.0\FloralWisdom.Models.runtimeconfig.json
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\bin\Debug\net9.0\FloralWisdom.Models.dll
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\bin\Debug\net9.0\FloralWisdom.Models.pdb
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\FloralWisdom.Models.csproj.AssemblyReference.cache
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\FloralWisdom.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\FloralWisdom.Models.AssemblyInfoInputs.cache
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\FloralWisdom.Models.AssemblyInfo.cs
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\FloralWisdom.Models.csproj.CoreCompileInputs.cache
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\FloralWisdom.Models.sourcelink.json
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\FloralWisdom.Models.dll
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\refint\FloralWisdom.Models.dll
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\FloralWisdom.Models.pdb
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\FloralWisdom.Models.genruntimeconfig.cache
+C:\Users\bonbo\Desktop\FloralWisdom\FloralWisdom.Models\obj\Debug\net9.0\ref\FloralWisdom.Models.dll
