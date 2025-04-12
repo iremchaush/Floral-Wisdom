@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FloralWisdom.Services
+namespace FloralWisdom.Services.Implementations
 {
 	public class UserService : IUserService
 	{
@@ -36,7 +36,7 @@ namespace FloralWisdom.Services
 		public Task<User?> GetByIdAsync(string id)
 		{
 			var user = _user.FirstOrDefault(x => x.Id==id);
-			return Task.FromResult<User?>(user);
+			return Task.FromResult(user);
 		}
 
 		public Task UpdateAsync(User user)

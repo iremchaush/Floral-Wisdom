@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FloralWisdom.Services
+namespace FloralWisdom.Services.Implementations
 {
 	public class PlantService : IPlantService
 	{
@@ -20,7 +20,7 @@ namespace FloralWisdom.Services
 		public Task<Plant?> GetByIdAsync(string id)
 		{
 			var plant = _plants.FirstOrDefault(p => p.Id == id);
-			return Task.FromResult<Plant?>(plant);
+			return Task.FromResult(plant);
 		}
 
 		public Task AddAsync(Plant plant)
