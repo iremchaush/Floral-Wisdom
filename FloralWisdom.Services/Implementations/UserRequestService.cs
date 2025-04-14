@@ -1,4 +1,4 @@
-﻿using FloralWisdom.Models.Entities;
+using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -49,7 +49,7 @@ namespace FloralWisdom.Services.Implementations
 			}
 
 			existing.WorkHours = userRequest.WorkHours;
-			existing.Colours = userRequest.Colours;
+			existing.Colour = userRequest.Colour;
 			existing.Name = userRequest.Name;
 			existing.User=userRequest.User;
 			existing.Plant=userRequest.Plant;
