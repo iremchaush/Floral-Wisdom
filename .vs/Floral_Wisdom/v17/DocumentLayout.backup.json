@@ -40,9 +40,10 @@
               "RelativeDocumentMoniker": "FloralWisdom.Services\\Implementations\\PlantService.cs",
               "ToolTip": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Services\\Implementations\\PlantService.cs",
               "RelativeToolTip": "FloralWisdom.Services\\Implementations\\PlantService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T17:43:27.854Z"
+              "WhenOpened": "2025-04-13T17:43:27.854Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -54,7 +55,8 @@
               "RelativeToolTip": "FloralWisdom.Models\\Entities\\Plant.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T17:33:45.093Z"
+              "WhenOpened": "2025-04-13T17:33:45.093Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -64,9 +66,10 @@
               "RelativeDocumentMoniker": "FloralWisdom.ConsoleApp\\UI\\PlantsMenu.cs",
               "ToolTip": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\UI\\PlantsMenu.cs",
               "RelativeToolTip": "FloralWisdom.ConsoleApp\\UI\\PlantsMenu.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAAFYAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAFIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T17:28:45.056Z"
+              "WhenOpened": "2025-04-13T17:28:45.056Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
