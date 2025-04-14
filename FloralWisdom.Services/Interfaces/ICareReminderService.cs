@@ -2,7 +2,7 @@
 
 namespace FloralWisdom.Services.Interfaces
 {
-    interface ICareReminderService
+    public interface ICareReminderService
     {
         Task<List<CareReminder>> GetAllAsync();
         Task<CareReminder?> GetByIdAsync(string id);

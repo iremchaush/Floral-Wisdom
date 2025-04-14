@@ -1,0 +1,91 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|c:\\users\\bonbo\\desktop\\floralwisdom\\floralwisdom.consoleapp\\ui\\plantsmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|solutionrelative:floralwisdom.consoleapp\\ui\\plantsmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15152F7E-6553-42E9-862F-DD3ECC090CFF}|FloralWisdom.Models\\FloralWisdom.Models.csproj|c:\\users\\bonbo\\desktop\\floralwisdom\\floralwisdom.models\\entities\\plant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15152F7E-6553-42E9-862F-DD3ECC090CFF}|FloralWisdom.Models\\FloralWisdom.Models.csproj|solutionrelative:floralwisdom.models\\entities\\plant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69B4698B-0CE5-49DA-B0C4-9B898380800D}|FloralWisdom.Services\\FloralWisdom.Services.csproj|c:\\users\\bonbo\\desktop\\floralwisdom\\floralwisdom.services\\implementations\\plantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69B4698B-0CE5-49DA-B0C4-9B898380800D}|FloralWisdom.Services\\FloralWisdom.Services.csproj|solutionrelative:floralwisdom.services\\implementations\\plantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|c:\\users\\bonbo\\desktop\\floralwisdom\\floralwisdom.consoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|solutionrelative:floralwisdom.consoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlantService.cs",
+              "DocumentMoniker": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Services\\Implementations\\PlantService.cs",
+              "RelativeDocumentMoniker": "FloralWisdom.Services\\Implementations\\PlantService.cs",
+              "ToolTip": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Services\\Implementations\\PlantService.cs",
+              "RelativeToolTip": "FloralWisdom.Services\\Implementations\\PlantService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T17:43:27.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Plant.cs",
+              "DocumentMoniker": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\Entities\\Plant.cs",
+              "RelativeDocumentMoniker": "FloralWisdom.Models\\Entities\\Plant.cs",
+              "ToolTip": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\Entities\\Plant.cs",
+              "RelativeToolTip": "FloralWisdom.Models\\Entities\\Plant.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T17:33:45.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlantsMenu.cs",
+              "DocumentMoniker": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\UI\\PlantsMenu.cs",
+              "RelativeDocumentMoniker": "FloralWisdom.ConsoleApp\\UI\\PlantsMenu.cs",
+              "ToolTip": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\UI\\PlantsMenu.cs",
+              "RelativeToolTip": "FloralWisdom.ConsoleApp\\UI\\PlantsMenu.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAFIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T17:28:45.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\Program.cs",
+              "RelativeDocumentMoniker": "FloralWisdom.ConsoleApp\\Program.cs",
+              "ToolTip": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\Program.cs",
+              "RelativeToolTip": "FloralWisdom.ConsoleApp\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T17:21:25.075Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

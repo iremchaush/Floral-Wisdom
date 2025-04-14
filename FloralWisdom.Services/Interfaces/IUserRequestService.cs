@@ -4,7 +4,7 @@ using FloralWisdom.Models.Entities;
 
 namespace FloralWisdom.Services.Interfaces
 {
-    interface IUserRequestService
+	public interface IUserRequestService
     {
         Task<List<UserRequest>> GetAllAsync();
         Task<UserRequest?> GetByIdAsync(string id);

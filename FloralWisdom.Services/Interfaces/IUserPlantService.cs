@@ -1,6 +1,6 @@
 ﻿namespace FloralWisdom.Services.Interfaces
 {
-    interface IUserPlantService
+	public interface IUserPlantService
     {
     }
 }

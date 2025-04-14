@@ -3,7 +3,7 @@
 
 namespace FloralWisdom.Services.Interfaces
 {
-    interface IUserService
+	public interface IUserService
     {
         Task<List<User>> GetAllAsync();
         Task<User?> GetByIdAsync(string id);

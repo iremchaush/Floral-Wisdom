@@ -2,7 +2,7 @@
 
 namespace FloralWisdom.Services.Interfaces
 {
-    interface IPlantService
+	public interface IPlantService
     {
         Task<List<Plant>> GetAllAsync();
         Task<Plant?> GetByIdAsync(string id);
