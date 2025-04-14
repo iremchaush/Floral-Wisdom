@@ -52,11 +52,15 @@ namespace FloralWisdom.ConsoleApp.UI
 
             Console.Write("Email: ");
             var email = Console.ReadLine();
+            
+            Console.Write("Password: ");
+            var password = Console.ReadLine();
 
             var user = new User
             {
                 Username = name!,
-                Email = email!
+                Email = email!,
+                Password = password!
             };
 
             await userService.AddAsync(user);
