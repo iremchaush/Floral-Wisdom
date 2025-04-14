@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,7 +11,7 @@ namespace FloralWisdom.Models.Entities
     public class UserRequest
     {
         [Key]
-        public string ?Id { get; set; }
+        public string? Id { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -21,7 +21,7 @@ namespace FloralWisdom.Models.Entities
 
         public string PlantType { get; set; } = string.Empty;
        
-        public string Colours { get; set; } = string.Empty;
+        public string Colour { get; set; } = string.Empty;
 
         [Required]
         [ForeignKey(nameof(User))]
