@@ -1,5 +1,6 @@
-﻿using FloralWisdom.Data;
+using FloralWisdom.Data;
 using FloralWisdom.Models.Entities;
+using FloralWisdom.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,146 +9,326 @@ using System.Threading.Tasks;
 
 namespace FloralWisdom.ConsoleApp.UI
 {
-	public static void ShowMenu(FloralWisdomDbContext context)
-	{
-		while (true)
-		{
-			Console.Clear();
-			Console.WriteLine("=== User Request Menu ===");
-			Console.WriteLine("1. Show all User Requests");
-			Console.WriteLine("2. Add User Request");
-			Console.WriteLine("3. Edit User Request");
-			Console.WriteLine("4. Delete User Request");
-			Console.WriteLine("0. Back to main menu");
-			Console.Write("Choice: ");
+    public class UserRequestMenu(
+        IUserRequestService userRequestService,
+        IPlantService plantService,
+        IUserService userService)
+    {
+        public async Task ShowMenuAsync()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("=== User Request Menu ===");
+                Console.WriteLine("1. Show all user requests");
+                Console.WriteLine("2. Add user request");
+                Console.WriteLine("3. Delete user request");
+                Console.WriteLine("4. Filter user request");
+                Console.WriteLine("0. Back to main menu (or press ESC)");
+                Console.Write("Choice: ");
 
-			var choice = Console.ReadLine();
+                var key = Console.ReadKey(true);
 
-			switch (choice)
-			{
-				case "1": ShowAll(context); break;
-				case "2": Add(context); break;
-				case "3": Edit(context); break;
-				case "4": Delete(context); break;
-				case "0": return;
-				default: Console.WriteLine("Invalid option!"); break;
-			}
+                switch (key.Key)
+                {
+                    case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
+                        await ShowAllAsync();
+                        break;
 
-			Console.WriteLine("\nPress Enter to continue...");
-			Console.ReadLine();
-		}
-	}
+                    case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
+                        await AddAsync();
+                        break;
 
-	private static void ShowAll(FloralWisdomDbContext context)
-	{
-		var userRequests = context.UserRequest.Include(a => a.User).ToList();
+                    case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
+                        await DeleteAsync();
+                        break;
 
-		Console.WriteLine("\n--- All User Requests ---");
-		foreach (var userRequest in userRequests)
-		{
-			Console.WriteLine($"{userRequest.Id}. {userRequest.Name} - {userRequest.PlantType}, {userRequest.WorkHours}, {userRequest.Clour} ({userRequest.User.Name})");
-		}
-	}
+                    case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
+                        await FilterAsync();
+                        break;
 
-	private static void Add(FloralWisdomDbContext context)
-	{
-		Console.Write("Name: ");
-		var name = Console.ReadLine();
+                    case ConsoleKey.D0:
+                    case ConsoleKey.NumPad0:
+                    case ConsoleKey.Escape:
+                        return;
 
-		Console.Write("Plant Type (e.g. ): ");
-		var plantType = Console.ReadLine();
+                    default:
+                        Console.WriteLine("\nInvalid choice. Press 1–4, 0 or ESC.");
+                        break;
+                }
 
-		Console.Write("Work Hours: ");
-		int workHours = int.Parse(Console.ReadLine());
+                Console.WriteLine("\nPress Enter to continue...");
+                Console.ReadLine();
+            }
+        }
 
-		Console.Write("Colour (e.g. pink, red, yellow): ");
-		string colour = Console.ReadLine();
+        private async Task ShowAllAsync()
+        {
+            var requests = await userRequestService.GetAllAsync();
+            Console.WriteLine("\n--- All User Requests ---");
 
-		Console.WriteLine("\nAvailable Plants:");
-		var plants = context.Plants.ToList();
-		foreach (var plant in plants)
-		{
-			Console.WriteLine($"{plant.Id}. {plant.Name}");
-		}
+            foreach (var r in requests)
+            {
+                Console.WriteLine($"{r.Id}. {r.Name} | {r.User.Username} requested for {r.PlantType} preferably with colour {r.Colour}");
+            }
+        }
 
-		Console.Write("Select Plant ID: ");
-		string userId = Console.ReadLine();
+        private async Task AddAsync()
+        {
+            Console.WriteLine("\n=== User Requests ===");
+            var requests = await userRequestService.GetAllAsync();
+            foreach (var r in requests)
+            {
+                Console.WriteLine($"{r.Id}. {r.Name}");
+            }
 
-		var userRequest = new UserRequest
-		{
-			Name = name!,
-			PlantType = plantType!,
-			WorkHours = workHours!,
-			Colours = colour!,
-			UserId = userId
-		};
+            string userId = ReadString("Enter User ID: ");
 
-		context.UserRequests.AddAsync(userRequest);
-		context.SaveChanges();
+            Console.WriteLine("\n=== Available Plants ===");
+            var plants = await plantService.GetAllAsync();
+            foreach (var p in plants)
+            {
+                Console.WriteLine($"{p.Id}. {p.Name} ({p.ScientificName}) - {p.Description}");
+            }
 
-		Console.WriteLine("User Request added.");
-	}
+            Console.Write("Name: ");
+            var name = Console.ReadLine();
 
-	private static void Edit(FloralWisdomDbContext context)
-	{
+            Console.Write("Plant Type: ");
+            var plantType = Console.ReadLine();
 
-		Console.Write("\nEnter ID to edit: ");
-		if (int.TryParse(Console.ReadLine(), out int id))
-		{
-			var userRequest = context.UserRequests.Find(id);
-			if (userRequest == null)
-			{
-				Console.WriteLine("User Request not found.");
-				return;
-			}
+            Console.Write("Work Hours: ");
+            var workHours = int.Parse(Console.ReadLine());
 
-			Console.Write($"Name ({plant.Name}): ");
-			var name = Console.ReadLine();
-			Console.Write($"Plant Type ({plant.PlantType}): ");
-			var plantType = Console.ReadLine();
-			Console.Write($"Work Hours ({plant.WorkHours}): ");
-			var workHours = Console.ReadLine();
-			Console.Write($"Colour ({plant.Colour}): ");
-			var colour = Console.ReadLine();
+            Console.Write("Colour: ");
+            var colour = Console.ReadLine();
 
-			Console.WriteLine("\nAvailable Plants:");
-			var plants = context.Plants.ToList();
-			foreach (var plant in plants)
-			{
-				Console.WriteLine($"{plant.Id}. {plant.Name}");
-			}
+            var userRequest = new UserRequest
+            {
+                Name = name!,
+                PlantType = plantType!,
+                WorkHours = workHours!,
+                Colour = colour!
+            };
 
-			Console.Write($"User Request ID ({userRequest.Id}): ");
-			string userRequestId = Console.ReadLine();
+            await userRequestService.AddAsync(userRequest);
+            Console.WriteLine("User Request recorded.");
+        }
 
-			userRequest.Name = string.IsNullOrWhiteSpace(name) ? userRequest.Name : name;
-			userRequest.PlantType = string.IsNullOrWhiteSpace(plantType) ? userRequest.PlantType : plantType;
-			userRequest.WorkHours = string.TryParse(Console.ReadLine(), out int workHours) ? userRequest.WorkHours : workHours;
-			userRequest.Colours = string.IsNullOrWhiteSpace(colour) ? userRequest.Colours : colour;
-			userRequest.UserId = userRequestId != null ? userRequestId : userRequestId;
+        private async Task DeleteAsync()
+        {
+            await ShowAllAsync();
 
-			context.SaveChanges();
-			Console.WriteLine("User Request updated.");
-		}
-	}
+            string id = ReadString("\nEnter User Request ID to delete: ");
+            await userRequestService.DeleteAsync(id);
+            Console.WriteLine("User Request deleted.");
+        }
 
-	private static void Delete(FloralWisdomDbContext context)
-	{
-		string id = Console.ReadLine();
-		Console.Write("\nEnter ID to delete: ");
-		if (string.IsNullOrWhiteSpace(id))
-		{
-			var userRequest = context.UserRequests.Find(id);
-			if (userRequest == null)
-			{
-				Console.WriteLine("User Request not found.");
-				return;
-			}
+        private async Task FilterAsync()
+        {
+            Console.Clear();
+            Console.WriteLine("=== Filter Requests ===");
+            Console.WriteLine("1. By User");
+            Console.WriteLine("2. By Name");
+            Console.WriteLine("3. By Plant Type");
+            Console.WriteLine("4. By Colour");
+            Console.WriteLine("5. By Working Hours");
+            Console.WriteLine("0. Back");
+            Console.Write("Choice: ");
 
-			context.UserRequests.Remove(userRequest);
-			context.SaveChanges();
-			Console.WriteLine("User Request deleted.");
-		}
-	}
+            var filter = Console.ReadLine();
+
+            switch (filter)
+            {
+                case "1":
+                    await FilterByUserAsync();
+                    break;
+                case "2":
+                    await FilterByNameAsync();
+                    break;
+                case "3":
+                    await FilterByPlantTypeAsync();
+                    break;
+                case "4":
+                    await FilterByColourAsync();
+                    break;
+                case "5":
+                    await FilterByWorkHoursAsync();
+                    break;
+                case "0":
+                    return;
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
+        }
+
+        private async Task FilterByUserAsync()
+        {
+            Console.Clear();
+            Console.WriteLine("=== Filter Sales by User ===");
+
+            var users = await userService.GetAllAsync();
+            foreach (var u in users)
+            {
+                Console.WriteLine($"{u.Id}. {u.Username} - {u.Email}");
+            }
+
+            string userId = ReadString("Enter User ID: ");
+
+            var userRequest = await userRequestService.GetAllAsync();
+            var filtered = userRequest.Where(ur => ur.UserId == userId).ToList();
+
+            if (filtered.Count == 0)
+            {
+                Console.WriteLine("No requests found for the selected user.");
+            }
+            else
+            {
+                Console.WriteLine($"\nRequests for user ID {userId}:");
+                foreach (var u in filtered)
+                {
+                    Console.WriteLine($"{u.Id}. {u.Name} | {u.User.Username} requested for {u.PlantType} preferably with colour {u.Colour}");
+                }
+            }
+        }
+
+        private async Task FilterByNameAsync()
+        {
+            Console.Clear();
+            Console.WriteLine("=== Filter User Requests by Name ===");
+
+            string name = ReadString("Enter Request Name:");
+
+            var requests = await userRequestService.GetAllAsync();
+            var filtered = requests
+                .Where(ur => ur.Name == name)
+                .ToList();
+
+            if (filtered.Count == 0)
+            {
+                Console.WriteLine("No requests found with that name.");
+            }
+            else
+            {
+                Console.WriteLine($"\nRequests {name}:");
+                foreach (var u in filtered)
+                {
+                    Console.WriteLine($"{u.Id}. {u.Name} | {u.User.Username} requested for {u.PlantType} preferably with colour {u.Colour}");
+                }
+            }
+        }
+
+        private async Task FilterByPlantTypeAsync()
+        {
+            Console.Clear();
+            Console.WriteLine("=== Filter User Requests by Plant Type ===");
+
+            string plantType = ReadString("Enter Plant Type:");
+
+            var requests = await userRequestService.GetAllAsync();
+            var filtered = requests
+                .Where(ur => ur.PlantType == plantType)
+                .ToList();
+
+            if (filtered.Count == 0)
+            {
+                Console.WriteLine("No requests found with that plant type.");
+            }
+            else
+            {
+                Console.WriteLine($"\nRequests for {plantType}:");
+                foreach (var u in filtered)
+                {
+                    Console.WriteLine($"{u.Id}. {u.Name} | {u.User.Username} requested for {u.PlantType} preferably with colour {u.Colour}");
+                }
+            }
+        }
+
+        private async Task FilterByColourAsync()
+        {
+            Console.Clear();
+            Console.WriteLine("=== Filter User Requests by Colour ===");
+
+            string colour = ReadString("Enter Requested Colour:");
+
+            var requests = await userRequestService.GetAllAsync();
+            var filtered = requests
+                .Where(ur => ur.Colour == colour)
+                .ToList();
+
+            if (filtered.Count == 0)
+            {
+                Console.WriteLine("No requests found with that colour.");
+            }
+            else
+            {
+                Console.WriteLine($"\nRequests with colour {colour}:");
+                foreach (var u in filtered)
+                {
+                    Console.WriteLine($"{u.Id}. {u.Name} | {u.User.Username} requested for {u.PlantType} preferably with colour {u.Colour}");
+                }
+            }
+        }
+
+        private async Task FilterByWorkHoursAsync()
+        {
+            Console.Clear();
+            Console.WriteLine("=== Filter User Requests by Work Hours ===");
+
+            int hours = ReadInt("Enter Work Hours:");
+
+            var requests = await userRequestService.GetAllAsync();
+            var filtered = requests
+                .Where(ur => ur.WorkHours == hours)
+                .ToList();
+
+            if (filtered.Count == 0)
+            {
+                Console.WriteLine("No requests found with that work hours.");
+            }
+            else
+            {
+                Console.WriteLine($"\nRequests with {hours} work hours:");
+                foreach (var u in filtered)
+                {
+                    Console.WriteLine($"{u.Id}. {u.Name} | {u.User.Username} requested for {u.PlantType} preferably with colour {u.Colour}");
+                }
+            }
+        }
+
+        // ========== Helper Methods ==========
+
+        private static string ReadString(string prompt)
+        {
+            string input;
+            while (true)
+            {
+                Console.Write(prompt);
+                input = Console.ReadLine();
+                if (!string.IsNullOrEmpty(input))
+                    break;
+                Console.WriteLine("Invalid string. Please try again.");
+            }
+            return input;
+        }
+        private static int ReadInt(string prompt)
+        {
+            int value;
+            while (true)
+            {
+                Console.Write(prompt);
+                var input = Console.ReadLine();
+                if (int.TryParse(input, out value))
+                    break;
+                Console.WriteLine("Invalid number. Please try again.");
+            }
+            return value;
+        }
+    }
 }
 
