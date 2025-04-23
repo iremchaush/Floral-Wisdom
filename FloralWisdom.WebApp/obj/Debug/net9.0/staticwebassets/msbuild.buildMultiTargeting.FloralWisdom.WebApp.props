@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\FloralWisdom.WebApp.props" />
+</Project>

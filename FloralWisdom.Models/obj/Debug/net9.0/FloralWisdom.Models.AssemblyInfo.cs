@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FloralWisdom.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a62acb9d599f8f99f7cd45f96cfdaea32a30a487")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f944e6bbf2e0743c84f9f3b04e6923c52d1391b")]
 [assembly: System.Reflection.AssemblyProductAttribute("FloralWisdom.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FloralWisdom.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

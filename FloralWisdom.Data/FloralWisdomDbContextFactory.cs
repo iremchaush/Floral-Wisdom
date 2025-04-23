@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace FloralWisdom.Data.Context;
 
-public class ArtGalleryDbContextFactory : IDesignTimeDbContextFactory<FloralWisdomDbContext>
+public class FloralWisdomDbContextFactory : IDesignTimeDbContextFactory<FloralWisdomDbContext>
 {
     public FloralWisdomDbContext CreateDbContext(string[] args)
     {

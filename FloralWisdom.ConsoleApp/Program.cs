@@ -8,24 +8,34 @@ namespace FloralWisdom.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			var services = new ServiceCollection();
-			ConfigureServices(services);
-			var serviceProvider = services.BuildServiceProvider();
+			static void Main(string[] args)
+			{
+				var services = new ServiceCollection();
 
-			var plantMenu = serviceProvider.GetRequiredService<PlantsMenu>();
-			plantMenu.ShowMenuAsync();
+				services.AddTransient<UserMenu>();
+				services.AddTransient<PlantsMenu>();
+				services.AddTransient<CareReminderMenu>();
+				services.AddTransient<UserRequestMenu>();
+				services.AddTransient<DiseaseReportMenu>();
 
-			var userMenu = serviceProvider.GetRequiredService<UserMenu>();
-			userMenu.ShowMenuAsync();
+				var serviceProvider = services.BuildServiceProvider();
 
-			var careReminderMenu = serviceProvider.GetRequiredService<CareReminderMenu>();
-			careReminderMenu.ShowMenuAsync();
+				var userMenu = serviceProvider.GetRequiredService<UserMenu>();
+				userMenu.ShowMenuAsync();
 
-			var userRequestMenu = serviceProvider.GetRequiredService<UserRequestMenu>();
-			userRequestMenu.ShowMenuAsync();
+				var plantMenu = serviceProvider.GetRequiredService<PlantsMenu>();
+				plantMenu.ShowMenuAsync();
 
-			var diseaseReportMenu = serviceProvider.GetRequiredService<DiseaseReportMenu>();
-			diseaseReportMenu.ShowMenuAsync();
+				var careReminderMenu = serviceProvider.GetRequiredService<CareReminderMenu>();
+				careReminderMenu.ShowMenuAsync();
+
+				var userRequestMenu = serviceProvider.GetRequiredService<UserRequestMenu>();
+				userRequestMenu.ShowMenuAsync();
+
+				var diseaseReportMenu = serviceProvider.GetRequiredService<DiseaseReportMenu>();
+				diseaseReportMenu.ShowMenuAsync();
+			}
+
 		}
 
 		private static void ConfigureServices(ServiceCollection services)
