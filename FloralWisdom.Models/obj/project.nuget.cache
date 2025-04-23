@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dSb0VZ/wyK0=",
+  "dgSpecHash": "0+pceUgpYMI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj",
+  "projectFilePath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bonbo\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\bonbo\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

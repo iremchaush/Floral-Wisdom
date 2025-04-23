@@ -13,7 +13,19 @@ namespace FloralWisdom.ConsoleApp
 			var serviceProvider = services.BuildServiceProvider();
 
 			var plantMenu = serviceProvider.GetRequiredService<PlantsMenu>();
-			plantMenu.Show();
+			plantMenu.ShowMenuAsync();
+
+			var userMenu = serviceProvider.GetRequiredService<UserMenu>();
+			userMenu.ShowMenuAsync();
+
+			var careReminderMenu = serviceProvider.GetRequiredService<CareReminderMenu>();
+			careReminderMenu.ShowMenuAsync();
+
+			var userRequestMenu = serviceProvider.GetRequiredService<UserRequestMenu>();
+			userRequestMenu.ShowMenuAsync();
+
+			var diseaseReportMenu = serviceProvider.GetRequiredService<DiseaseReportMenu>();
+			diseaseReportMenu.ShowMenuAsync();
 		}
 
 		private static void ConfigureServices(ServiceCollection services)

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj": {}
+    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj": {
+    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj",
+        "projectUniqueName": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj",
         "projectName": "FloralWisdom.ConsoleApp",
-        "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj",
+        "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj",
         "packagesPath": "C:\\Users\\bonbo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.ConsoleApp\\obj\\",
+        "outputPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,14 +33,14 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj": {
-                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj"
+              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj": {
+                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj"
               },
-              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj": {
-                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj"
+              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj": {
+                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj"
               },
-              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj": {
-                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj"
+              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj": {
+                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj"
               }
             }
           }
@@ -110,14 +110,14 @@
         }
       }
     },
-    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj": {
+    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj",
+        "projectUniqueName": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj",
         "projectName": "FloralWisdom.Data",
-        "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj",
+        "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj",
         "packagesPath": "C:\\Users\\bonbo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Data\\obj\\",
+        "outputPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -139,8 +139,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj": {
-                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj"
+              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj": {
+                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj"
               }
             }
           }
@@ -210,14 +210,14 @@
         }
       }
     },
-    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj": {
+    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj",
+        "projectUniqueName": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj",
         "projectName": "FloralWisdom.Models",
-        "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj",
+        "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj",
         "packagesPath": "C:\\Users\\bonbo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\obj\\",
+        "outputPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -306,14 +306,14 @@
         }
       }
     },
-    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj": {
+    "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj",
+        "projectUniqueName": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj",
         "projectName": "FloralWisdom.Services",
-        "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj",
+        "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Services\\FloralWisdom.Services.csproj",
         "packagesPath": "C:\\Users\\bonbo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Services\\obj\\",
+        "outputPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -335,11 +335,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj": {
-                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj"
+              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj": {
+                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Data\\FloralWisdom.Data.csproj"
               },
-              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj": {
-                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj"
+              "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj": {
+                "projectPath": "C:\\Users\\bonbo\\Desktop\\FloralWisdom\\Floral-Wisdom\\FloralWisdom.Models\\FloralWisdom.Models.csproj"
               }
             }
           }
