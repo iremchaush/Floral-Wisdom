@@ -1,40 +1,35 @@
-﻿using FloralWisdom.Services.Implementations;
-using FloralWisdom.Services.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using FloralWisdom.ConsoleApp.UI;
+using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.Implementations;
+using FloralWisdom.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 namespace FloralWisdom.ConsoleApp
 {
 	public class Program
 	{
-		static void Main(string[] args)
+		static async Task Main(string[] args)
 		{
-			static void Main(string[] args)
-			{
-				var services = new ServiceCollection();
 
-				services.AddTransient<UserMenu>();
-				services.AddTransient<PlantsMenu>();
-				services.AddTransient<CareReminderMenu>();
-				services.AddTransient<UserRequestMenu>();
-				services.AddTransient<DiseaseReportMenu>();
 
-				var serviceProvider = services.BuildServiceProvider();
+			var services = new ServiceCollection();
+			services.AddDbContext<FloralWisdomDbContext>(options =>
+				options.UseSqlServer("Server = localhost, 1433; Database = FloralWisdom; User Id = sa; Password =#AniBonbon128;TrustServerCertificate=True;"));
 
-				var userMenu = serviceProvider.GetRequiredService<UserMenu>();
-				userMenu.ShowMenuAsync();
 
-				var plantMenu = serviceProvider.GetRequiredService<PlantsMenu>();
-				plantMenu.ShowMenuAsync();
+			services.AddTransient<UserMenu>();
+			services.AddTransient<PlantsMenu>();
+			services.AddTransient<CareReminderMenu>();
+			services.AddTransient<UserRequestMenu>();
+			services.AddTransient<DiseaseReportMenu>();
 
-				var careReminderMenu = serviceProvider.GetRequiredService<CareReminderMenu>();
-				careReminderMenu.ShowMenuAsync();
+			ConfigureServices(services);
 
-				var userRequestMenu = serviceProvider.GetRequiredService<UserRequestMenu>();
-				userRequestMenu.ShowMenuAsync();
+			var serviceProvider = services.BuildServiceProvider();
 
-				var diseaseReportMenu = serviceProvider.GetRequiredService<DiseaseReportMenu>();
-				diseaseReportMenu.ShowMenuAsync();
-			}
+			await ShowMainMenuAsync(serviceProvider);
 
 		}
 
@@ -45,6 +40,63 @@ namespace FloralWisdom.ConsoleApp
 			services.AddScoped<ICareReminderService, CareReminderService>();
 			services.AddScoped<IDiseaseReportService, DiseaseReportService>();
 			services.AddScoped<IUserRequestService, UserRequestService>();
+		}
+
+		private static async Task ShowMainMenuAsync(ServiceProvider serviceProvider)
+		{
+			bool exitRequested = false;
+
+			while (!exitRequested)
+			{
+				Console.Clear();
+				Console.WriteLine("=== Floral Wisdom Main Menu ===");
+				Console.WriteLine("1. User Management");
+				Console.WriteLine("2. Plant Management");
+				Console.WriteLine("3. Care Reminders");
+				Console.WriteLine("4. User Requests");
+				Console.WriteLine("5. Disease Reports");
+				Console.WriteLine("0. Exit");
+				Console.Write("Select an option: ");
+
+				string input = Console.ReadLine();
+
+				switch (input)
+				{
+					case "1":
+						var userMenu = serviceProvider.GetRequiredService<UserMenu>();
+						await userMenu.ShowMenuAsync();
+						break;
+					case "2":
+						var plantMenu = serviceProvider.GetRequiredService<PlantsMenu>();
+						await plantMenu.ShowMenuAsync();
+						break;
+					case "3":
+						var careReminderMenu = serviceProvider.GetRequiredService<CareReminderMenu>();
+						await careReminderMenu.ShowMenuAsync();
+						break;
+					case "4":
+						var userRequestMenu = serviceProvider.GetRequiredService<UserRequestMenu>();
+						await userRequestMenu.ShowMenuAsync();
+						break;
+					case "5":
+						var diseaseReportMenu = serviceProvider.GetRequiredService<DiseaseReportMenu>();
+						await diseaseReportMenu.ShowMenuAsync();
+						break;
+					case "0":
+						exitRequested = true;
+						Console.WriteLine("Exiting application. Goodbye!");
+						break;
+					default:
+						Console.WriteLine("Invalid selection. Please try again.");
+						break;
+				}
+
+				if (!exitRequested)
+				{
+					Console.WriteLine("\nPress any key to return to the main menu...");
+					Console.ReadKey();
+				}
+			}
 		}
 	}
 }

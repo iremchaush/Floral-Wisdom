@@ -42,7 +42,7 @@ namespace FloralWisdom.ConsoleApp.UI
             Console.WriteLine("\n--- All Plants ---");
             foreach (var plant in plants)
             {
-                Console.WriteLine($"{plant.Id}. {plant.Name} ({plant.ScientificName}) - {plant.Description} | {plant.WateringFrequency} | {plant.SunlightRequirement}");
+                Console.WriteLine($"{plant.Name} ({plant.ScientificName}) - {plant.Description} | {plant.WateringFrequency} | {plant.SunlightRequirement}");
             }
         }
 
@@ -65,7 +65,8 @@ namespace FloralWisdom.ConsoleApp.UI
 
             var plant = new Plant
             {
-                Name = name!,
+				Id = Guid.NewGuid().ToString(),
+				Name = name!,
                 ScientificName = sciName!,
                 Description = description!,
                 WateringFrequency = water!,
@@ -73,7 +74,8 @@ namespace FloralWisdom.ConsoleApp.UI
             };
 
             await plantService.AddAsync(plant);
-            Console.WriteLine("Plant added.");
+			await plantService.SaveChangesAsync();
+			Console.WriteLine("Plant added.");
         }
 
         private async Task EditAsync()
@@ -113,7 +115,8 @@ namespace FloralWisdom.ConsoleApp.UI
                 if (water > 0) plant.WateringFrequency = water;
 
                 await plantService.UpdateAsync(plant);
-                Console.WriteLine("Plant updated.");
+				await plantService.SaveChangesAsync();
+				Console.WriteLine("Plant updated.");
             }
         }
 
@@ -126,7 +129,8 @@ namespace FloralWisdom.ConsoleApp.UI
             if (!string.IsNullOrEmpty(id))
             {
                 await plantService.DeleteAsync(id);
-                Console.WriteLine("Plant deleted.");
+				await plantService.SaveChangesAsync();
+				Console.WriteLine("Plant deleted.");
             }
         }
     }

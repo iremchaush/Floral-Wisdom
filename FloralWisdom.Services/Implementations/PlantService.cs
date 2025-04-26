@@ -1,5 +1,7 @@
-﻿using FloralWisdom.Models.Entities;
+﻿using FloralWisdom.Data;
+using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +12,38 @@ namespace FloralWisdom.Services.Implementations
 {
 	public class PlantService : IPlantService
 	{
-		private readonly List<Plant> _plants = new();
+		private readonly FloralWisdomDbContext context;
 
-		public Task<List<Plant>> GetAllAsync()
+		public PlantService(FloralWisdomDbContext context)
 		{
-			return Task.FromResult(_plants.ToList());
+			this.context = context;
 		}
 
-		public Task<Plant?> GetByIdAsync(string id)
+		public async Task<List<Plant>> GetAllAsync()
 		{
-			var plant = _plants.FirstOrDefault(p => p.Id == id);
-			return Task.FromResult(plant);
+			return await context.Plants.ToListAsync();
 		}
 
-		public Task AddAsync(Plant plant)
+		public async Task<Plant?> GetByIdAsync(string id)
 		{
-			// Generate a unique ID if not provided
-			plant.Id = Guid.NewGuid().ToString();
-			_plants.Add(plant);
-			return Task.CompletedTask;
+			var plant = await context.Plants.FindAsync(id);
+			return plant;
 		}
 
-		public Task UpdateAsync(Plant plant)
+		public async Task AddAsync(Plant plant)
 		{
-			var existing = _plants.FirstOrDefault(p => p.Id == plant.Id);
+			await context.Plants.AddAsync(plant);
+		}
+
+		public async Task SaveChangesAsync()
+		{
+			await context.SaveChangesAsync();
+		}
+
+		public async Task UpdateAsync(Plant plant)
+		{
+			var existing = await context.Plants.FindAsync(plant.Id);
+
 			if (existing == null)
 			{
 				throw new ArgumentException($"Plant with ID '{plant.Id}' not found.");
@@ -44,19 +54,15 @@ namespace FloralWisdom.Services.Implementations
 			existing.Description = plant.Description;
 			existing.WateringFrequency = plant.WateringFrequency;
 			existing.SunlightRequirement = plant.SunlightRequirement;
-
-			return Task.CompletedTask;
 		}
 
-		public Task DeleteAsync(string id)
+		public async Task DeleteAsync(string id)
 		{
-			var plant = _plants.FirstOrDefault(p => p.Id == id);
+			var plant = await context.Plants.FindAsync(id);
 			if (plant != null)
 			{
-				_plants.Remove(plant);
+				context.Plants.Remove(plant);
 			}
-
-			return Task.CompletedTask;
 		}
 	}
 }

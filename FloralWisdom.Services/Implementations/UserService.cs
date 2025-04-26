@@ -1,5 +1,7 @@
-﻿using FloralWisdom.Models.Entities;
+﻿using FloralWisdom.Data;
+using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,38 +12,46 @@ namespace FloralWisdom.Services.Implementations
 {
 	public class UserService : IUserService
 	{
-		private readonly List<User> _user = new();
-		public Task AddAsync(User user)
+		private readonly FloralWisdomDbContext context;
+
+		public UserService(FloralWisdomDbContext context)
 		{
-			user.Id = Guid.NewGuid().ToString();
-			_user.Add(user);
-			return Task.CompletedTask;
+			this.context = context;
 		}
 
-		public Task DeleteAsync(string id)
+		public async Task AddAsync(User user)
 		{
-			var user = _user.FirstOrDefault(x => x.Id == id);
+			await context.Users.AddAsync(user);
+		}
+
+		public async Task SaveChangesAsync()
+		{
+			await context.SaveChangesAsync();
+		}
+
+		public async Task DeleteAsync(string id)
+		{
+			var user = await context.Users.FindAsync(id);
 			if (user != null)
 			{
-				_user.Remove(user);
+				context.Users.Remove(user);
 			}
-			return Task.CompletedTask;
 		}
 
-		public Task<List<User>> GetAllAsync()
+		public async Task<List<User>> GetAllAsync()
 		{
-			return Task.FromResult(_user.ToList());
+			return await context.Users.ToListAsync();
 		}
 
-		public Task<User?> GetByIdAsync(string id)
+		public async Task<User?> GetByIdAsync(string id)
 		{
-			var user = _user.FirstOrDefault(x => x.Id==id);
-			return Task.FromResult(user);
+			var user = await context.Users.FindAsync(id);
+			return user;
 		}
 
-		public Task UpdateAsync(User user)
+		public async Task UpdateAsync(User user)
 		{
-			var existing = _user.FirstOrDefault(x => x.Id == user.Id);
+			var existing = await context.Users.FindAsync(user.Id);
 			if (existing == null)
 			{
 				throw new ArgumentException($"User with ID '{user.Id}' not found.");
@@ -50,8 +60,6 @@ namespace FloralWisdom.Services.Implementations
 			existing.Username = user.Username;
 			existing.Password = user.Password;
 			existing.Email = user.Email;
-
-			return Task.CompletedTask;
 		}
 	}
 }

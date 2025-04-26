@@ -11,5 +11,6 @@ namespace FloralWisdom.Services.Interfaces
         Task AddAsync(UserRequest userRequest);
         Task UpdateAsync(UserRequest userRequest);
         Task DeleteAsync(string id);
-    }
+		Task SaveChangesAsync();
+	}
 }

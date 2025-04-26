@@ -73,7 +73,7 @@ namespace FloralWisdom.ConsoleApp.UI
 
             foreach (var r in requests)
             {
-                Console.WriteLine($"{r.Id}. {r.Name} | {r.User.Username} requested for {r.PlantType} preferably with colour {r.Colour}");
+                Console.WriteLine($"{r.Name} | {r.User.Username} requested for {r.PlantType} preferably with colour {r.Colour}");
             }
         }
 
@@ -109,14 +109,16 @@ namespace FloralWisdom.ConsoleApp.UI
 
             var userRequest = new UserRequest
             {
-                Name = name!,
+				Id = Guid.NewGuid().ToString(),
+				Name = name!,
                 PlantType = plantType!,
                 WorkHours = workHours!,
                 Colour = colour!
             };
 
             await userRequestService.AddAsync(userRequest);
-            Console.WriteLine("User Request recorded.");
+			await userRequestService.SaveChangesAsync();
+			Console.WriteLine("User Request recorded.");
         }
 
         private async Task DeleteAsync()
@@ -125,7 +127,8 @@ namespace FloralWisdom.ConsoleApp.UI
 
             string id = ReadString("\nEnter User Request ID to delete: ");
             await userRequestService.DeleteAsync(id);
-            Console.WriteLine("User Request deleted.");
+			await userRequestService.SaveChangesAsync();
+			Console.WriteLine("User Request deleted.");
         }
 
         private async Task FilterAsync()

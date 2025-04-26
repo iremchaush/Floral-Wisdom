@@ -9,5 +9,6 @@ namespace FloralWisdom.Services.Interfaces
         Task AddAsync(Plant plant);
         Task UpdateAsync(Plant plant);
         Task DeleteAsync(string id);
-    }
+		Task SaveChangesAsync();
+	}
 }

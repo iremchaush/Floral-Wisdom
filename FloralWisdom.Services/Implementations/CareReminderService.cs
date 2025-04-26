@@ -1,5 +1,7 @@
-﻿using FloralWisdom.Models.Entities;
+﻿using FloralWisdom.Data;
+using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,38 +12,43 @@ namespace FloralWisdom.Services.Implementations
 {
 	public class CareReminderService : ICareReminderService
 	{
-		private readonly List<CareReminder> _careReminders = new();
-		public Task AddAsync(CareReminder careReminder)
-		{
-			careReminder.Id = Guid.NewGuid().ToString();
-			_careReminders.Add(careReminder);
-			return Task.CompletedTask;
-		}
+		private readonly FloralWisdomDbContext context;
 
-		public Task DeleteAsync(string id)
+		public CareReminderService(FloralWisdomDbContext context)
 		{
-			var careReminder = _careReminders.FirstOrDefault(x => x.Id == id);
+			this.context = context;
+		}
+		public async Task AddAsync(CareReminder careReminder)
+		{
+			await context.CareReminders.AddAsync(careReminder);
+		}
+		public async Task SaveChangesAsync()
+		{
+			await context.SaveChangesAsync();
+		}
+		public async Task DeleteAsync(string id)
+		{
+			var careReminder = await context.CareReminders.FindAsync(id);
 			if (careReminder != null)
 			{
-				_careReminders.Remove(careReminder);
+				context.CareReminders.Remove(careReminder);
 			}
-			return Task.CompletedTask;
 		}
 
-		public Task<List<CareReminder>> GetAllAsync()
+		public async Task<List<CareReminder>> GetAllAsync()
 		{
-			return Task.FromResult(_careReminders.ToList());
+			return await context.CareReminders.ToListAsync();
 		}
 
-		public Task<CareReminder?> GetByIdAsync(string id)
+		public async Task<CareReminder?> GetByIdAsync(string id)
 		{
-			var careReminder = _careReminders.FirstOrDefault(x => x.Id==id);
-			return Task.FromResult(careReminder);
+			var careReminder = await context.CareReminders.FindAsync(id);
+			return careReminder;
 		}
 
-		public Task UpdateAsync(CareReminder careReminder)
+		public async Task UpdateAsync(CareReminder careReminder)
 		{
-			var existing = _careReminders.FirstOrDefault(x => x.Id==careReminder.Id);
+			var existing = await context.CareReminders.FindAsync(careReminder.Id);
 			if (existing==null)
 			{
 				throw new ArgumentException($"Care reminder with ID '{careReminder.Id}' not found.");
@@ -51,8 +58,6 @@ namespace FloralWisdom.Services.Implementations
 			existing.Remindertype = careReminder.Remindertype;
 			existing.Plant=careReminder.Plant;
 			existing.PlantId=careReminder.PlantId;
-
-			return Task.CompletedTask;
 		}
 	}
 }

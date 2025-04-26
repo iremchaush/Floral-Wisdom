@@ -1,5 +1,7 @@
-﻿using FloralWisdom.Models.Entities;
+﻿using FloralWisdom.Data;
+using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,38 +12,43 @@ namespace FloralWisdom.Services.Implementations
 {
 	public class DiseaseReportService : IDiseaseReportService
 	{
-		private readonly List<DiseaseReport> _diseases = new();
-		public Task AddAsync(DiseaseReport diseaseReport)
-		{
-			diseaseReport.Id = Guid.NewGuid().ToString();
-			_diseases.Add(diseaseReport);
-			return Task.CompletedTask;
-		}
+		private readonly FloralWisdomDbContext context;
 
-		public Task DeleteAsync(string id)
+		public DiseaseReportService(FloralWisdomDbContext context)
 		{
-			var diseaseReport = _diseases.FirstOrDefault(d => d.Id == id);
+			this.context = context;
+		}
+		public async Task AddAsync(DiseaseReport diseaseReport)
+		{
+			await context.DiseaseReports.AddAsync(diseaseReport);
+		}
+		public async Task SaveChangesAsync()
+		{
+			await context.SaveChangesAsync();
+		}
+		public async Task DeleteAsync(string id)
+		{
+			var diseaseReport = await context.DiseaseReports.FindAsync(id);
 			if (diseaseReport != null)
 			{
-				_diseases.Remove(diseaseReport);			
+				context.DiseaseReports.Remove(diseaseReport);			
 			}
-			return Task.CompletedTask;
 		}
 
-		public Task<List<DiseaseReport>> GetAllAsync()
+		public async Task<List<DiseaseReport>> GetAllAsync()
 		{
-			return Task.FromResult(_diseases.ToList());
+			return await context.DiseaseReports.ToListAsync();
 		}
 
-		public Task<DiseaseReport?> GetByIdAsync(string id)
+		public async Task<DiseaseReport?> GetByIdAsync(string id)
 		{
-			var diseaseReport = _diseases.FirstOrDefault(x => x.Id==id);
-			return Task.FromResult(diseaseReport);
+			var diseaseReport = await context.DiseaseReports.FindAsync(id);
+			return diseaseReport;
 		}
 
-		public Task UpdateAsync(DiseaseReport diseaseReport)
+		public async Task UpdateAsync(DiseaseReport diseaseReport)
 		{
-			var existing = _diseases.FirstOrDefault(x => x.Id==diseaseReport.Id);
+			var existing = await context.DiseaseReports.FindAsync(diseaseReport.Id);
 			if (existing == null)
 			{
 				throw new ArgumentException($"Disease report with ID '{diseaseReport.Id}' not found.");
@@ -51,8 +58,6 @@ namespace FloralWisdom.Services.Implementations
 			existing.Diagnosis=diseaseReport.Diagnosis;
 			existing.Plant=diseaseReport.Plant;
 			existing.PlantId=diseaseReport.PlantId;
-
-			return Task.CompletedTask;
 		}
 	}
 }

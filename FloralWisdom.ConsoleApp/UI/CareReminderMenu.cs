@@ -57,7 +57,7 @@ namespace FloralWisdom.ConsoleApp.UI
 
 			foreach (var r in reminders)
 			{
-				Console.WriteLine($"{r.Id}. {r.Remindertype} due on {r.NextDueDate:dd MMM yyyy} | Scientific name/: {r.Plant?.ScientificName}");
+				Console.WriteLine($"{r.Remindertype} due on {r.NextDueDate:dd MMM yyyy} | Scientific name/: {r.Plant?.ScientificName}");
 			}
 		}
 
@@ -85,7 +85,9 @@ namespace FloralWisdom.ConsoleApp.UI
 			};
 
 			await careReminderService.AddAsync(reminder);
+			await careReminderService.SaveChangesAsync();
 			Console.WriteLine("Care reminder added successfully.");
+			
 		}
 
 		private async Task DeleteAsync()
@@ -94,6 +96,7 @@ namespace FloralWisdom.ConsoleApp.UI
 
 			string id = ReadString("\nEnter Reminder ID to delete: ");
 			await careReminderService.DeleteAsync(id);
+			await careReminderService.SaveChangesAsync();
 			Console.WriteLine("Care reminder deleted.");
 		}
 

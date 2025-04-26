@@ -1,4 +1,5 @@
 ﻿using FloralWisdom.Models.Entities;
+using FloralWisdom.Services.Implementations;
 using FloralWisdom.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -60,7 +61,7 @@ namespace FloralWisdom.ConsoleApp.UI
 
 			foreach (var r in reports)
 			{
-				Console.WriteLine($"{r.Id}. Diagnosis: {r.Diagnosis} | Treatment: {r.RecommendedTreatment} | Plant name: {r.Plant?.Name}");
+				Console.WriteLine($"Diagnosis: {r.Diagnosis} | Treatment: {r.RecommendedTreatment} | Plant name: {r.Plant?.Name}");
 			}
 		}
 
@@ -88,6 +89,7 @@ namespace FloralWisdom.ConsoleApp.UI
 			};
 
 			await diseaseReportService.AddAsync(report);
+			await diseaseReportService.SaveChangesAsync();
 			Console.WriteLine("Disease report added successfully.");
 		}
 
@@ -97,6 +99,7 @@ namespace FloralWisdom.ConsoleApp.UI
 
 			string id = ReadString("\nEnter Report ID to delete: ");
 			await diseaseReportService.DeleteAsync(id);
+			await diseaseReportService.SaveChangesAsync();
 			Console.WriteLine("Report deleted.");
 		}
 

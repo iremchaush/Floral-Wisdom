@@ -1,5 +1,7 @@
+using FloralWisdom.Data;
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,39 +12,46 @@ namespace FloralWisdom.Services.Implementations
 {
 	public class UserRequestService : IUserRequestService
 	{
-		private readonly List<UserRequest> _userRequests = new();
-		public Task AddAsync(UserRequest userRequest)
+		private readonly FloralWisdomDbContext context;
+
+		public UserRequestService(FloralWisdomDbContext context)
 		{
-			userRequest.Id = Guid.NewGuid().ToString();
-			_userRequests.Add(userRequest);
-			return Task.CompletedTask;
+			this.context = context;
 		}
 
-		public Task DeleteAsync(string id)
+		public async Task AddAsync(UserRequest userRequest)
 		{
-			var request = _userRequests.FirstOrDefault(x => x.Id == id);
+			await context.UserRequests.AddAsync(userRequest);
+		}
+
+		public async Task SaveChangesAsync()
+		{
+			await context.SaveChangesAsync();
+		}
+
+		public async Task DeleteAsync(string id)
+		{
+			var request = await context.UserRequests.FindAsync(id);
 			if (request != null)
 			{
-				_userRequests.Remove(request);
+				context.UserRequests.Remove(request);
 			}
-
-			return Task.CompletedTask;
 		}
 
-		public Task<List<UserRequest>> GetAllAsync()
+		public async Task<List<UserRequest>> GetAllAsync()
 		{
-			return Task.FromResult(_userRequests.ToList());
+			return await context.UserRequests.ToListAsync();
 		}
 
-		public Task<UserRequest?> GetByIdAsync(string id)
+		public async Task<UserRequest?> GetByIdAsync(string id)
 		{
-			var userRequest = _userRequests.FirstOrDefault(x => x.Id == id);
-			return Task.FromResult(userRequest);
+			var userRequest = await context.UserRequests.FindAsync(id);
+			return userRequest;
 		}
 
-		public Task UpdateAsync(UserRequest userRequest)
+		public async Task UpdateAsync(UserRequest userRequest)
 		{
-			var existing = _userRequests.FirstOrDefault(x => x.Id==userRequest.Id);
+			var existing = await context.UserRequests.FindAsync(userRequest.Id);
 			if (existing == null)
 			{
 				throw new ArgumentException($"User request with ID '{userRequest.Id}' not found.");
@@ -54,8 +63,6 @@ namespace FloralWisdom.Services.Implementations
 			existing.User=userRequest.User;
 			existing.Plant=userRequest.Plant;
 			existing.UserId = userRequest.UserId;
-
-			return Task.CompletedTask;
 		}
 	}
 }

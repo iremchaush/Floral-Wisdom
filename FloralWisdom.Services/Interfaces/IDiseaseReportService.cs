@@ -9,5 +9,6 @@ namespace FloralWisdom.Services.Interfaces
         Task AddAsync(DiseaseReport diseaseReport);
         Task UpdateAsync(DiseaseReport diseaseReport);
         Task DeleteAsync(string id);
-    }
+		Task SaveChangesAsync();
+	}
 }
