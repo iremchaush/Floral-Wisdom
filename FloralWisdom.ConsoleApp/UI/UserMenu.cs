@@ -42,7 +42,7 @@ namespace FloralWisdom.ConsoleApp.UI
 			Console.WriteLine("\n--- All Users ---");
 			foreach (var u in users)
 			{
-				Console.WriteLine($"{u.Username} | {u.Email}");
+				Console.WriteLine($"{u.Id} | {u.Username} | {u.Email}");
 			}
 		}
 

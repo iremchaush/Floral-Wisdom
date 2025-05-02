@@ -55,7 +55,7 @@ namespace FloralWisdom.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Diagnosis,RecommendedTreatment,PlantId")] DiseaseReport diseaseReport)
         {
-            if (ModelState.IsValid)
+            if (diseaseReport!=null)
             {
                 _context.Add(diseaseReport);
                 await _context.SaveChangesAsync();

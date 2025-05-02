@@ -4,43 +4,32 @@ using FloralWisdom.Services.Interfaces;
 using FloralWisdom.Services.Implementations;
 using FloralWisdom.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-
 namespace FloralWisdom.ConsoleApp
 {
 	public class Program
 	{
 		static async Task Main(string[] args)
 		{
-			static void Main(string[] args)
-			{
-				var services = new ServiceCollection();
 
-				services.AddTransient<UserMenu>();
-				services.AddTransient<PlantsMenu>();
-				services.AddTransient<CareReminderMenu>();
-				services.AddTransient<UserRequestMenu>();
-				services.AddTransient<DiseaseReportMenu>();
+
+			var services = new ServiceCollection();
+			services.AddDbContext<FloralWisdomDbContext>(options =>
+				options.UseSqlServer("Server = localhost, 1433; Database = FloralWisdom; User Id = sa; Password =#AniBonbon128;TrustServerCertificate=True;"));
+
+
+			services.AddTransient<UserMenu>();
+			services.AddTransient<PlantsMenu>();
+			services.AddTransient<CareReminderMenu>();
+			services.AddTransient<UserRequestMenu>();
+			services.AddTransient<DiseaseReportMenu>();
 
 			ConfigureServices(services);
 
 			var serviceProvider = services.BuildServiceProvider();
 
-				var userMenu = serviceProvider.GetRequiredService<UserMenu>();
-				userMenu.ShowMenuAsync();
+			await ShowMainMenuAsync(serviceProvider);
 
-				var plantMenu = serviceProvider.GetRequiredService<PlantsMenu>();
-				plantMenu.ShowMenuAsync();
-
-				var careReminderMenu = serviceProvider.GetRequiredService<CareReminderMenu>();
-				careReminderMenu.ShowMenuAsync();
-
-				var userRequestMenu = serviceProvider.GetRequiredService<UserRequestMenu>();
-				userRequestMenu.ShowMenuAsync();
-
-				var diseaseReportMenu = serviceProvider.GetRequiredService<DiseaseReportMenu>();
-				diseaseReportMenu.ShowMenuAsync();
-			}
+		}
 
 		private static void ConfigureServices(ServiceCollection services)
 		{

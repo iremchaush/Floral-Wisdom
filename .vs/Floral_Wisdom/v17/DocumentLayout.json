@@ -1,0 +1,89 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|c:\\users\\bonbo\\desktop\\floral-wisdom\\floralwisdom.consoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|solutionrelative:floralwisdom.consoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69B4698B-0CE5-49DA-B0C4-9B898380800D}|FloralWisdom.Services\\FloralWisdom.Services.csproj|c:\\users\\bonbo\\desktop\\floral-wisdom\\floralwisdom.services\\interfaces\\icarereminderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69B4698B-0CE5-49DA-B0C4-9B898380800D}|FloralWisdom.Services\\FloralWisdom.Services.csproj|solutionrelative:floralwisdom.services\\interfaces\\icarereminderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|c:\\users\\bonbo\\desktop\\floral-wisdom\\floralwisdom.consoleapp\\ui\\usermenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|solutionrelative:floralwisdom.consoleapp\\ui\\usermenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|c:\\users\\bonbo\\desktop\\floral-wisdom\\floralwisdom.consoleapp\\ui\\careremindermenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{869D5235-C45B-4F9D-A808-24363EC7ABD3}|FloralWisdom.ConsoleApp\\FloralWisdom.ConsoleApp.csproj|solutionrelative:floralwisdom.consoleapp\\ui\\careremindermenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CareReminderMenu.cs",
+              "DocumentMoniker": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\UI\\CareReminderMenu.cs",
+              "RelativeDocumentMoniker": "FloralWisdom.ConsoleApp\\UI\\CareReminderMenu.cs",
+              "ToolTip": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\UI\\CareReminderMenu.cs",
+              "RelativeToolTip": "FloralWisdom.ConsoleApp\\UI\\CareReminderMenu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T20:53:45.888Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ICareReminderService.cs",
+              "DocumentMoniker": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\FloralWisdom.Services\\Interfaces\\ICareReminderService.cs",
+              "RelativeDocumentMoniker": "FloralWisdom.Services\\Interfaces\\ICareReminderService.cs",
+              "ToolTip": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\FloralWisdom.Services\\Interfaces\\ICareReminderService.cs",
+              "RelativeToolTip": "FloralWisdom.Services\\Interfaces\\ICareReminderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T20:48:15.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\Program.cs",
+              "RelativeDocumentMoniker": "FloralWisdom.ConsoleApp\\Program.cs",
+              "ToolTip": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\Program.cs",
+              "RelativeToolTip": "FloralWisdom.ConsoleApp\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T20:46:10.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserMenu.cs",
+              "DocumentMoniker": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\UI\\UserMenu.cs",
+              "RelativeDocumentMoniker": "FloralWisdom.ConsoleApp\\UI\\UserMenu.cs",
+              "ToolTip": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\UI\\UserMenu.cs",
+              "RelativeToolTip": "FloralWisdom.ConsoleApp\\UI\\UserMenu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T08:32:08.758Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

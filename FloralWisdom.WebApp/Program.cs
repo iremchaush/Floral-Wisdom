@@ -12,7 +12,7 @@ namespace FloralWisdom.WebApp
 			var builder = WebApplication.CreateBuilder(args);
 
 			// DbContext 
-			builder.Services.AddDbContext<FloralWisdomDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+			builder.Services.AddDbContext<FloralWisdomDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Server=localhost,1433;Database=FloralWisdom;User Id=sa;Password=#AniBonbon128;TrustServerCertificate=True;")));
 
 			//Services
 			builder.Services.AddScoped<IUserService, UserService>();

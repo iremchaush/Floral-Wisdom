@@ -2,11 +2,6 @@ using FloralWisdom.Data;
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FloralWisdom.Services.Implementations
 {

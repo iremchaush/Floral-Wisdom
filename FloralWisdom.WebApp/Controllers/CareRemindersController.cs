@@ -55,7 +55,7 @@ namespace FloralWisdom.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Remindertype,NextDueDate,PlantId")] CareReminder careReminder)
         {
-            if (ModelState.IsValid)
+            if (careReminder != null)
             {
                 _context.Add(careReminder);
                 await _context.SaveChangesAsync();

@@ -59,7 +59,7 @@ namespace FloralWisdom.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,WorkHours,PlantType,Colour,UserId")] UserRequest userRequest)
         {
-            if (ModelState.IsValid)
+            if (userRequest!=null)
             {
                 _context.Add(userRequest);
                 await _context.SaveChangesAsync();
