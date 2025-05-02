@@ -26,12 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -64,7 +60,7 @@
               "RelativeDocumentMoniker": "FloralWisdom.ConsoleApp\\Program.cs",
               "ToolTip": "C:\\Users\\bonbo\\Desktop\\Floral-Wisdom\\FloralWisdom.ConsoleApp\\Program.cs",
               "RelativeToolTip": "FloralWisdom.ConsoleApp\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T20:46:10.142Z",
               "EditorCaption": ""
