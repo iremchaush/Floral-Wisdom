@@ -15,12 +15,12 @@ public static class ServiceCollectionExtensions
 	public static IServiceCollection RegisterRepositories(
 		this IServiceCollection services)
 	{
-		services.AddScoped<IRepository<Plant, int>, ProfRepository<Plant, int>>();
-		services.AddScoped<IRepository<CareReminder, int>, ProfRepository<CareReminder, int>>();
-		services.AddScoped<IRepository<DiseaseReport, int>, ProfRepository<DiseaseReport, int>>();
-		services.AddScoped<IRepository<User, int>, ProfRepository<User, int>>();
+		services.AddScoped<IRepository<Plant, string>, ProfRepository<Plant, string>>();
+		services.AddScoped<IRepository<CareReminder, string>, ProfRepository<CareReminder, string>>();
+		services.AddScoped<IRepository<DiseaseReport, string>, ProfRepository<DiseaseReport, string>>();
+		services.AddScoped<IRepository<User, string>, ProfRepository<User, string>>();
 		services.AddScoped<IRepository<UserPlant, object>, ProfRepository<UserPlant, object>>();
-		services.AddScoped<IRepository<UserRequest, int>, ProfRepository<UserRequest, int>>();
+		services.AddScoped<IRepository<UserRequest, string>, ProfRepository<UserRequest, string>>();
 
 		return services;
 	}
