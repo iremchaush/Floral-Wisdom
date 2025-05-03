@@ -2,6 +2,7 @@ using FloralWisdom.Services.Interfaces;
 using FloralWisdom.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
 using FloralWisdom.Data;
+using FloralWisdom.Data.Repositories;
 
 namespace FloralWisdom.WebApp
 {
@@ -24,8 +25,9 @@ namespace FloralWisdom.WebApp
 			builder.Services.AddScoped<IUserRequestService, UserRequestService>();
 
 			builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped(typeof(IRepository<,>), typeof(ProfRepository<,>));
 
-			var app = builder.Build();
+            var app = builder.Build();
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())
 			{
