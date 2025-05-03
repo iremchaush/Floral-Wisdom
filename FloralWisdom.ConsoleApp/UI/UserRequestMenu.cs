@@ -73,7 +73,7 @@ namespace FloralWisdom.ConsoleApp.UI
 
             foreach (var r in requests)
             {
-                Console.WriteLine($"{r.Name} | {r.User.Username} requested for {r.PlantType} preferably with colour {r.Colour}");
+                Console.WriteLine($"Id: {r.Id} | {r.Name} | {r.User.Username} requested for {r.PlantType} preferably with colour {r.Colour}");
             }
         }
 

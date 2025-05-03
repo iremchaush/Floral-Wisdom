@@ -1,4 +1,5 @@
 ﻿using FloralWisdom.Models.Entities;
+using FloralWisdom.Services.ViewModels;
 
 namespace FloralWisdom.Services.Interfaces
 {
@@ -6,9 +7,8 @@ namespace FloralWisdom.Services.Interfaces
     {
         Task<List<DiseaseReport>> GetAllAsync();
         Task<DiseaseReport?> GetByIdAsync(string id);
-        Task AddAsync(DiseaseReport diseaseReport);
-        Task UpdateAsync(DiseaseReport diseaseReport);
-        Task DeleteAsync(string id);
-		Task SaveChangesAsync();
+        Task CreateDiseaseReportAsync(DiseaseReportViewModel diseaseReport);
+        Task UpdateDiseaseReportAsync(DiseaseReportViewModel diseaseReport);
+        Task DeleteDiseaseReportAsync(string id);
 	}
 }

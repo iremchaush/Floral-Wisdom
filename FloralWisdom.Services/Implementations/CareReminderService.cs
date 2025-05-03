@@ -1,63 +1,72 @@
-﻿using FloralWisdom.Data;
+﻿
+using FloralWisdom.Data.Repositories;
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FloralWisdom.Services.Implementations
 {
-	public class CareReminderService : ICareReminderService
+	public class CareReminderService(
+	IRepository<CareReminder, string> careReminderRepository)
+	: ICareReminderService
 	{
-		private readonly FloralWisdomDbContext context;
-
-		public CareReminderService(FloralWisdomDbContext context)
+		public async Task CreateCareReminderAsync(CareReminderViewModel careReminderViewModel)
 		{
-			this.context = context;
-		}
-		public async Task AddAsync(CareReminder careReminder)
-		{
-			await context.CareReminders.AddAsync(careReminder);
-		}
-		public async Task SaveChangesAsync()
-		{
-			await context.SaveChangesAsync();
-		}
-		public async Task DeleteAsync(string id)
-		{
-			var careReminder = await context.CareReminders.FindAsync(id);
-			if (careReminder != null)
+			var careReminder = new CareReminder()
 			{
-				context.CareReminders.Remove(careReminder);
+				Id = Guid.NewGuid().ToString(),
+				Remindertype = careReminderViewModel.Remindertype,
+				NextDueDate = careReminderViewModel.NextDueDate,
+				PlantId = careReminderViewModel.PlantId,
+				Plant = careReminderViewModel.Plant	
+			};
+			await careReminderRepository
+				.AddAsync(careReminder);
+		}
+
+		public async Task DeleteCareReminderAsync(string id)
+		{
+			CareReminder careReminder = await careReminderRepository
+				.GetByIdAsync(id)
+				?? throw new ArgumentException($"Care reminder with id `{id}` not found");
+
+			if (!await careReminderRepository.DeleteAsync(careReminder))
+			{
+				throw new ArgumentException($"Care reminder with id `{id}` couldn't be removed");
 			}
 		}
 
 		public async Task<List<CareReminder>> GetAllAsync()
 		{
-			return await context.CareReminders.ToListAsync();
+			return await careReminderRepository
+					.GetAllAttached()
+					.Include(r => r.Plant)
+					.ToListAsync();
 		}
 
 		public async Task<CareReminder?> GetByIdAsync(string id)
 		{
-			var careReminder = await context.CareReminders.FindAsync(id);
+			CareReminder careReminder = await careReminderRepository.GetByIdAsync(id)
+			?? throw new ArgumentException($"Care reminder with id `{id}` not found");
+
 			return careReminder;
 		}
 
-		public async Task UpdateAsync(CareReminder careReminder)
+		public async Task UpdateCareReminderAsync(CareReminderViewModel careReminderViewModel)
 		{
-			var existing = await context.CareReminders.FindAsync(careReminder.Id);
-			if (existing==null)
-			{
-				throw new ArgumentException($"Care reminder with ID '{careReminder.Id}' not found.");
-			}
+			var existingReminder = await careReminderRepository
+				.GetByIdAsync(careReminderViewModel.Id)
+				?? throw new ArgumentException($"Care reminder with id `{careReminderViewModel.Id}` not found");
 
-			existing.NextDueDate=careReminder.NextDueDate;
-			existing.Remindertype = careReminder.Remindertype;
-			existing.Plant=careReminder.Plant;
-			existing.PlantId=careReminder.PlantId;
+			existingReminder.Remindertype = careReminderViewModel.Remindertype;
+			existingReminder.NextDueDate = careReminderViewModel.NextDueDate;
+			existingReminder.PlantId = careReminderViewModel.PlantId;
+
+			if (!await careReminderRepository.UpdateAsync(existingReminder))
+			{
+				throw new ArgumentException($"Care reminder with id `{careReminderViewModel.Id}` couldn't be updated");
+			}
 		}
 	}
 }

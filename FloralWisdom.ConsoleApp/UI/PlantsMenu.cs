@@ -42,7 +42,7 @@ namespace FloralWisdom.ConsoleApp.UI
             Console.WriteLine("\n--- All Plants ---");
             foreach (var plant in plants)
             {
-                Console.WriteLine($"{plant.Name} ({plant.ScientificName}) - {plant.Description} | {plant.WateringFrequency} | {plant.SunlightRequirement}");
+                Console.WriteLine($"Id: {plant.Id} | {plant.Name} ({plant.ScientificName}) - {plant.Description} | {plant.WateringFrequency} | {plant.SunlightRequirement}");
             }
         }
 

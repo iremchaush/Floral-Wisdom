@@ -1,63 +1,68 @@
-﻿using FloralWisdom.Data;
-using FloralWisdom.Models.Entities;
+﻿using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using FloralWisdom.Data.Repositories;
 namespace FloralWisdom.Services.Implementations
 {
-	public class DiseaseReportService : IDiseaseReportService
+	public class DiseaseReportService(IRepository<DiseaseReport,string> diseaseReportRepository) : IDiseaseReportService
 	{
-		private readonly FloralWisdomDbContext context;
-
-		public DiseaseReportService(FloralWisdomDbContext context)
+		public async Task CreateDiseaseReportAsync(DiseaseReportViewModel diseaseReportViewModel)
 		{
-			this.context = context;
-		}
-		public async Task AddAsync(DiseaseReport diseaseReport)
-		{
-			await context.DiseaseReports.AddAsync(diseaseReport);
-		}
-		public async Task SaveChangesAsync()
-		{
-			await context.SaveChangesAsync();
-		}
-		public async Task DeleteAsync(string id)
-		{
-			var diseaseReport = await context.DiseaseReports.FindAsync(id);
-			if (diseaseReport != null)
+			var diseaseReport = new DiseaseReport()
 			{
-				context.DiseaseReports.Remove(diseaseReport);			
+				Id = Guid.NewGuid().ToString(),
+				Diagnosis = diseaseReportViewModel.Diagnosis,
+				RecommendedTreatment=diseaseReportViewModel.RecommendedTreatment,
+				PlantId =	diseaseReportViewModel.PlantId,
+				Plant = diseaseReportViewModel.Plant
+			};
+			await diseaseReportRepository
+				.AddAsync(diseaseReport);
+		}
+
+		public async Task DeleteDiseaseReportAsync(string id)
+		{
+			DiseaseReport diseaseReport = await diseaseReportRepository
+				.GetByIdAsync(id)
+				?? throw new ArgumentException($"Disease report with id `{id}` not found");
+
+			if (!await diseaseReportRepository.DeleteAsync(diseaseReport))
+			{
+				throw new ArgumentException($"Disease report with id `{id}` couldn't be removed");
 			}
 		}
-
+		 
 		public async Task<List<DiseaseReport>> GetAllAsync()
 		{
-			return await context.DiseaseReports.ToListAsync();
+			return await diseaseReportRepository
+					.GetAllAttached()
+					.Include(r => r.Plant)
+					.ToListAsync();
 		}
 
 		public async Task<DiseaseReport?> GetByIdAsync(string id)
 		{
-			var diseaseReport = await context.DiseaseReports.FindAsync(id);
-			return diseaseReport;
+			DiseaseReport diseaseReport = await diseaseReportRepository.GetByIdAsync(id)
+			?? throw new ArgumentException($"Disease report with id `{id}` not found");
+
+			return diseaseReport; ;
 		}
 
-		public async Task UpdateAsync(DiseaseReport diseaseReport)
+		public async Task UpdateDiseaseReportAsync(DiseaseReportViewModel diseaseReportViewModel)
 		{
-			var existing = await context.DiseaseReports.FindAsync(diseaseReport.Id);
-			if (existing == null)
-			{
-				throw new ArgumentException($"Disease report with ID '{diseaseReport.Id}' not found.");
-			}
+			var existingReport = await diseaseReportRepository
+				.GetByIdAsync(diseaseReportViewModel.Id)
+				?? throw new ArgumentException($"Disease report with id `{diseaseReportViewModel.Id}` not found");
 
-			existing.RecommendedTreatment = diseaseReport.RecommendedTreatment;
-			existing.Diagnosis=diseaseReport.Diagnosis;
-			existing.Plant=diseaseReport.Plant;
-			existing.PlantId=diseaseReport.PlantId;
+			existingReport.Diagnosis = diseaseReportViewModel.Diagnosis;
+			existingReport.RecommendedTreatment = diseaseReportViewModel.RecommendedTreatment;
+			existingReport.PlantId = diseaseReportViewModel.PlantId;
+
+			if (!await diseaseReportRepository.UpdateAsync(existingReport))
+			{
+				throw new ArgumentException($"Disease report with id `{diseaseReportViewModel.Id}` couldn't be updated");
+			}
 		}
 	}
 }

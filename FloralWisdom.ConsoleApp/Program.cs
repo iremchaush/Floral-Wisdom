@@ -2,8 +2,11 @@ using Microsoft.Extensions.DependencyInjection;
 using FloralWisdom.ConsoleApp.UI;
 using FloralWisdom.Services.Interfaces;
 using FloralWisdom.Services.Implementations;
+using FloralWisdom.Services.ViewModels;
 using FloralWisdom.Data;
 using Microsoft.EntityFrameworkCore;
+using FloralWisdom.Data.Repositories;
+using FloralWisdom.Models.Entities;
 namespace FloralWisdom.ConsoleApp
 {
 	public class Program
@@ -24,6 +27,7 @@ namespace FloralWisdom.ConsoleApp
 			services.AddTransient<DiseaseReportMenu>();
 
 			ConfigureServices(services);
+			RegisterRepositories(services);
 
 			var serviceProvider = services.BuildServiceProvider();
 
@@ -39,7 +43,15 @@ namespace FloralWisdom.ConsoleApp
 			services.AddScoped<IDiseaseReportService, DiseaseReportService>();
 			services.AddScoped<IUserRequestService, UserRequestService>();
 		}
-
+		public static void RegisterRepositories(ServiceCollection services)
+		{
+			services.AddScoped<IRepository<Plant, string>, ProfRepository<Plant, string>>();
+			services.AddScoped<IRepository<CareReminder, string>, ProfRepository<CareReminder, string>>();
+			services.AddScoped<IRepository<DiseaseReport, string>, ProfRepository<DiseaseReport, string>>();
+			services.AddScoped<IRepository<User, string>, ProfRepository<User, string>>();
+			services.AddScoped<IRepository<UserPlant, object>, ProfRepository<UserPlant, object>>();
+			services.AddScoped<IRepository<UserRequest, string>, ProfRepository<UserRequest, string >>();
+		}
 		private static async Task ShowMainMenuAsync(ServiceProvider serviceProvider)
 		{
 			bool exitRequested = false;

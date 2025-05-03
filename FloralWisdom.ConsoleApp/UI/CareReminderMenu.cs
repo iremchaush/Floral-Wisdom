@@ -1,6 +1,7 @@
 ﻿using FloralWisdom.Data;
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.ViewModels;
 
 namespace FloralWisdom.ConsoleApp.UI
 {
@@ -57,7 +58,7 @@ namespace FloralWisdom.ConsoleApp.UI
 
 			foreach (var r in reminders)
 			{
-				Console.WriteLine($"{r.Remindertype} due on {r.NextDueDate:dd MMM yyyy} | Scientific name/: {r.Plant?.ScientificName}");
+				Console.WriteLine($"Id: {r.Id} | {r.Remindertype} due on {r.NextDueDate:dd MMM yyyy} | Scientific name/: {r.Plant?.ScientificName}");
 			}
 		}
 
@@ -76,7 +77,7 @@ namespace FloralWisdom.ConsoleApp.UI
 			string type = ReadString("Enter Reminder Type (e.g., Watering, Pruning): ");
 			DateTime date = ReadDate("Enter Next Due Date (yyyy-MM-dd): ");
 
-			var reminder = new CareReminder
+			var reminder = new CareReminderViewModel
 			{
 				Id = Guid.NewGuid().ToString(),
 				Remindertype = type,
@@ -84,8 +85,7 @@ namespace FloralWisdom.ConsoleApp.UI
 				PlantId = plantId
 			};
 
-			await careReminderService.AddAsync(reminder);
-			await careReminderService.SaveChangesAsync();
+			await careReminderService.CreateCareReminderAsync(reminder);
 			Console.WriteLine("Care reminder added successfully.");
 			
 		}
@@ -95,8 +95,7 @@ namespace FloralWisdom.ConsoleApp.UI
 			await ShowAllAsync();
 
 			string id = ReadString("\nEnter Reminder ID to delete: ");
-			await careReminderService.DeleteAsync(id);
-			await careReminderService.SaveChangesAsync();
+			await careReminderService.DeleteCareReminderAsync(id);
 			Console.WriteLine("Care reminder deleted.");
 		}
 

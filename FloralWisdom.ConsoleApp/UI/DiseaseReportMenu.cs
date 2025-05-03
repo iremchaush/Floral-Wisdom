@@ -1,10 +1,7 @@
 ﻿using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Implementations;
 using FloralWisdom.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FloralWisdom.Services.ViewModels;
 
 namespace FloralWisdom.ConsoleApp.UI
 {
@@ -61,7 +58,7 @@ namespace FloralWisdom.ConsoleApp.UI
 
 			foreach (var r in reports)
 			{
-				Console.WriteLine($"Diagnosis: {r.Diagnosis} | Treatment: {r.RecommendedTreatment} | Plant name: {r.Plant?.Name}");
+				Console.WriteLine($"Id: {r.Id} | Diagnosis: {r.Diagnosis} | Treatment: {r.RecommendedTreatment} | Plant name: {r.Plant?.Name}");
 			}
 		}
 
@@ -80,7 +77,7 @@ namespace FloralWisdom.ConsoleApp.UI
 			string diagnosis = ReadString("Enter Diagnosis: ");
 			string treatment = ReadString("Enter Recommended Treatment: ");
 
-			var report = new DiseaseReport
+			var report = new DiseaseReportViewModel
 			{
 				Id = Guid.NewGuid().ToString(),
 				Diagnosis = diagnosis,
@@ -88,8 +85,7 @@ namespace FloralWisdom.ConsoleApp.UI
 				PlantId = plantId
 			};
 
-			await diseaseReportService.AddAsync(report);
-			await diseaseReportService.SaveChangesAsync();
+			await diseaseReportService.CreateDiseaseReportAsync(report);
 			Console.WriteLine("Disease report added successfully.");
 		}
 
@@ -98,8 +94,7 @@ namespace FloralWisdom.ConsoleApp.UI
 			await ShowAllAsync();
 
 			string id = ReadString("\nEnter Report ID to delete: ");
-			await diseaseReportService.DeleteAsync(id);
-			await diseaseReportService.SaveChangesAsync();
+			await diseaseReportService.DeleteDiseaseReportAsync(id);
 			Console.WriteLine("Report deleted.");
 		}
 
