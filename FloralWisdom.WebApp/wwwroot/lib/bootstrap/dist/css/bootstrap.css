@@ -734,7 +734,15 @@ progress {
   color: var(--bs-secondary-color);
 }
 
-.container,
+.container {
+    padding-right: calc(var(--bs-gutter-x) * 0.5 + 45px);
+    padding-left: calc(var(--bs-gutter-x) * 0.5 + 45px);
+    background-color: #eafce9;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+
 .container-fluid,
 .container-xxl,
 .container-xl,
