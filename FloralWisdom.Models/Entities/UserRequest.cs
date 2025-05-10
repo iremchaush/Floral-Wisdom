@@ -27,7 +27,6 @@ namespace FloralWisdom.Models.Entities
         [ForeignKey(nameof(User))]
         public string UserId { get; set; } = string.Empty;
 
-        [Required]
         public virtual User? User { get; set; }
 
         public virtual ICollection<Plant> Plant { get; set; } = new List<Plant>();

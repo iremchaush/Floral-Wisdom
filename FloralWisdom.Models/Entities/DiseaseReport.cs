@@ -29,7 +29,6 @@ namespace FloralWisdom.Models.Entities
         [ForeignKey(nameof(Plant))]
         public string? PlantId { get; set; }
 
-        [Required]
         public virtual Plant? Plant { get; set; }
     }
 }
