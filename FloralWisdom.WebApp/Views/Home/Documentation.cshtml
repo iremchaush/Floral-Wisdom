@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Floral Wisdom – Дигитален асистент за грижа за растения";
+}
+<h1>@ViewData["Title"]</h1>
+
+<ol>
+    <li>
+        <h4>Описание на проекта</h4>
+        <p>
+            Floral Wisdom е приложение, което помага на потребителите да се грижат за своите растения чрез персонализирани напомняния, дневник за здравословното им състояние и информация за техните нужди. Потребителите могат да добавят растения към своите профили, да получават напомняния за поливане, торене, пресаждане и да съхраняват данни за състоянието и лечението на растенията си.
+        </p>
+    </li>
+    <li>
+        <h4><span>Основни цели</span></h4>
+        <ul>
+            <li>Улесняване на ежедневната грижа за растенията.</li>
+            <li>Съхраняване на здравни записи и график за напояване, торене и пресаждане.</li>
+            <li>Изграждане на надеждна база данни с възможност за разширение.</li>
+            <li>Предоставяне на персонализирани напомняния за грижи на база вида и нуждите на растенията.</li>
+        </ul>
+    </li>
+    <li>
+        <h4><span>Технологии и инструменти</span></h4>
+        <ul>
+            <li>Език за програмиране: C# (Visual Studio)</li>
+            <li>Web Framework: ASP.NET Core 9 MVC</li>
+            <li>ORM: Entity Framework Core 9</li>
+            <li>База данни: SQL Server (LocalDB)</li>
+        </ul>
+    </li>
+    <li>
+        <h4><span>Структура на приложението</span></h4>
+        <ul>
+            <li>Слой за данни (Data Layer): работа с база данни чрез Entity Framework Core</li>
+            <li>Слой за услуги (Service Layer): бизнес логика и операции за грижа за растенията</li>
+            <li>
+                Презентационен слой (Presentation Layer):
+                <ul>
+                    <li>Конзолен интерфейс</li>
+                    <li>
+                        Web интерфейс (MVC архитектура)
+                        </li>
+                </ul>
+            </li>
+            * За дизайна на проекта използваме internet templates
+        </ul>
+    </li>
+    <li>
+        <h4><span>Структура на базата данни</span></h4>
+        <ul>
+            <li>Users: Id, Username, Email, PasswordHash</li>
+            <li>Plants: Id, Name, ScientificName, Description, WateringFrequency, SunlightRequirement</li>
+            <li>UserPlants: UserId, PlantId (връзка много към много, указващо кои растения принадлежат на потребителя)</li>
+            <li>CareReminders: Id, ReminderType, NextDueDate, PlantId</li>
+            <li>DiseaseReports: Id, Diagnosis, RecommendedTreatment, PlantId</li>
+            <li>UserRequests: Id, Name, WorkHours, PlantType, Colour, UserId (връзка с потребителя)</li>
+        </ul>
+    </li>
+</ol>
