@@ -22,4 +22,8 @@
     <ProjectReference Include="..\FloralWisdom.Services\FloralWisdom.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Account\" />
+  </ItemGroup>
+
 </Project>

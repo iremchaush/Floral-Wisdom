@@ -3,6 +3,7 @@ using FloralWisdom.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
 using FloralWisdom.Data;
 using FloralWisdom.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FloralWisdom.WebApp
 {
@@ -39,7 +40,16 @@ namespace FloralWisdom.WebApp
 			app.UseHttpsRedirection();
 			app.UseRouting();
 
+	//		builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+	//.AddCookie(options =>
+	//{
+	//	options.LoginPath = "/Account/Login";
+	//	options.LogoutPath = "/Account/Logout";
+	//});
+
+			app.UseAuthentication();
 			app.UseAuthorization();
+
 
 			app.MapStaticAssets();
 			app.MapControllerRoute(

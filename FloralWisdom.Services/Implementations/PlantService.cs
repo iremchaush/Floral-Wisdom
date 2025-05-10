@@ -1,6 +1,8 @@
 ﻿using FloralWisdom.Data;
+using FloralWisdom.Data.Repositories;
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,58 +12,61 @@ using System.Threading.Tasks;
 
 namespace FloralWisdom.Services.Implementations
 {
-	public class PlantService : IPlantService
+	public class PlantService(IRepository<Plant, string> plantRepository) : IPlantService
 	{
-		private readonly FloralWisdomDbContext context;
-
-		public PlantService(FloralWisdomDbContext context)
+		public async Task CreatePlantAsync(PlantViewModel plantViewModel)
 		{
-			this.context = context;
+			var plant = new Plant() {
+				Id=Guid.NewGuid().ToString(),
+				Name = plantViewModel.Name,
+				ScientificName = plantViewModel.ScientificName,
+				Description = plantViewModel.Description,
+				SunlightRequirement = plantViewModel.SunlightRequirement,
+				WateringFrequency = plantViewModel.WateringFrequency
+			};
+			await plantRepository.AddAsync(plant);
+		}
+
+		public async Task DeletePlantAsync(string id)
+		{
+			Plant plant = await plantRepository
+				.GetByIdAsync(id)
+				?? throw new ArgumentException($"Plant with id `{id}` not found");
+
+			if (!await plantRepository.DeleteAsync(plant))
+			{
+				throw new ArgumentException($"Plant with id `{id}` couldn't be removed");
+			}
 		}
 
 		public async Task<List<Plant>> GetAllAsync()
 		{
-			return await context.Plants.ToListAsync();
+			return await plantRepository.GetAllAttached().ToListAsync();
 		}
 
 		public async Task<Plant?> GetByIdAsync(string id)
 		{
-			var plant = await context.Plants.FindAsync(id);
+			Plant plant = await plantRepository.GetByIdAsync(id)
+		?? throw new ArgumentException($"Plant with id `{id}` not found");
+
 			return plant;
 		}
 
-		public async Task AddAsync(Plant plant)
+		public async Task UpdatePlantAsync(PlantViewModel plantViewModel)
 		{
-			await context.Plants.AddAsync(plant);
-		}
+			var existingPlant = await plantRepository
+				.GetByIdAsync(plantViewModel.Id)
+				?? throw new ArgumentException($"Plant with id `{plantViewModel.Id}` not found");
 
-		public async Task SaveChangesAsync()
-		{
-			await context.SaveChangesAsync();
-		}
+			existingPlant.Name= plantViewModel.Name;
+			existingPlant.ScientificName = plantViewModel.ScientificName;
+			existingPlant.Description = plantViewModel.Description;
+			existingPlant.WateringFrequency = plantViewModel.WateringFrequency;
+			existingPlant.SunlightRequirement = plantViewModel.SunlightRequirement;
 
-		public async Task UpdateAsync(Plant plant)
-		{
-			var existing = await context.Plants.FindAsync(plant.Id);
-
-			if (existing == null)
+			if (!await plantRepository.UpdateAsync(existingPlant))
 			{
-				throw new ArgumentException($"Plant with ID '{plant.Id}' not found.");
-			}
-
-			existing.Name = plant.Name;
-			existing.ScientificName = plant.ScientificName;
-			existing.Description = plant.Description;
-			existing.WateringFrequency = plant.WateringFrequency;
-			existing.SunlightRequirement = plant.SunlightRequirement;
-		}
-
-		public async Task DeleteAsync(string id)
-		{
-			var plant = await context.Plants.FindAsync(id);
-			if (plant != null)
-			{
-				context.Plants.Remove(plant);
+				throw new ArgumentException($"Plant with id `{plantViewModel.Id}` couldn't be updated");
 			}
 		}
 	}

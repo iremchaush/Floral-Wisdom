@@ -1,6 +1,8 @@
 ﻿using FloralWisdom.Data;
+using FloralWisdom.Data.Repositories;
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,56 +12,59 @@ using System.Threading.Tasks;
 
 namespace FloralWisdom.Services.Implementations
 {
-	public class UserService : IUserService
+	public class UserService(IRepository<User, string> userRepository) : IUserService
 	{
-		private readonly FloralWisdomDbContext context;
 
-		public UserService(FloralWisdomDbContext context)
+		public async Task CreateUserAsync(UserViewModel userViewModel)
 		{
-			this.context = context;
-		}
-
-		public async Task AddAsync(User user)
-		{
-			await context.Users.AddAsync(user);
-		}
-
-		public async Task SaveChangesAsync()
-		{
-			await context.SaveChangesAsync();
-		}
-
-		public async Task DeleteAsync(string id)
-		{
-			var user = await context.Users.FindAsync(id);
-			if (user != null)
+			var user = new User()
 			{
-				context.Users.Remove(user);
+				Id = Guid.NewGuid().ToString(),
+				Username = userViewModel.Username,
+				Email = userViewModel.Email,
+				Password = userViewModel.Password
+			};
+			await userRepository.AddAsync(user);
+		}
+
+		public async Task DeleteUserAsync(string id)
+		{
+			User user = await userRepository.GetByIdAsync(id)
+			?? throw new ArgumentException($"User with id `{id}` not found");
+
+			if (!await userRepository.DeleteAsync(user))
+			{
+				throw new ArgumentException($"User with id `{id}` couldn't be removed");
 			}
 		}
 
 		public async Task<List<User>> GetAllAsync()
 		{
-			return await context.Users.ToListAsync();
+			return await userRepository.GetAllAttached().ToListAsync();
 		}
 
 		public async Task<User?> GetByIdAsync(string id)
 		{
-			var user = await context.Users.FindAsync(id);
+			User user = await userRepository.GetByIdAsync(id)
+			?? throw new ArgumentException($"User with id `{id}` not found");
+
 			return user;
 		}
 
-		public async Task UpdateAsync(User user)
+		public async Task UpdateUserAsync(UserViewModel userViewModel)
 		{
-			var existing = await context.Users.FindAsync(user.Id);
-			if (existing == null)
-			{
-				throw new ArgumentException($"User with ID '{user.Id}' not found.");
-			}
+			var existingUser= await userRepository
+			.GetByIdAsync(userViewModel.Id)
+			?? throw new ArgumentException($"User with id `{userViewModel.Id}` not found");
 
-			existing.Username = user.Username;
-			existing.Password = user.Password;
-			existing.Email = user.Email;
+			existingUser.Username = userViewModel.Username;
+			existingUser.Email = userViewModel.Email;
+			existingUser.Password = userViewModel.Password;
+
+			if (!await userRepository.UpdateAsync(existingUser))
+			{
+				throw new ArgumentException($"User with id `{userViewModel.Id}` couldn't be updated");
+			}
 		}
 	}
 }

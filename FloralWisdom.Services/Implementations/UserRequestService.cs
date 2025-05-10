@@ -1,63 +1,76 @@
 using FloralWisdom.Data;
+using FloralWisdom.Data.Repositories;
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace FloralWisdom.Services.Implementations
 {
-	public class UserRequestService : IUserRequestService
+	public class UserRequestService(IRepository<UserRequest, string> userRequestRepository) : IUserRequestService
 	{
-		private readonly FloralWisdomDbContext context;
-
-		public UserRequestService(FloralWisdomDbContext context)
+		public async Task CreateUserRequestAsync(UserRequestViewModel userRequestViewModel)
 		{
-			this.context = context;
-		}
-
-		public async Task AddAsync(UserRequest userRequest)
-		{
-			await context.UserRequests.AddAsync(userRequest);
-		}
-
-		public async Task SaveChangesAsync()
-		{
-			await context.SaveChangesAsync();
-		}
-
-		public async Task DeleteAsync(string id)
-		{
-			var request = await context.UserRequests.FindAsync(id);
-			if (request != null)
+			var userRequest = new UserRequest()
 			{
-				context.UserRequests.Remove(request);
+				Id = Guid.NewGuid().ToString(),
+				Name = userRequestViewModel.Name,
+				Colour = userRequestViewModel.Colour,
+				Plant = userRequestViewModel.Plant,
+				PlantType = userRequestViewModel.PlantType,
+				User = userRequestViewModel.User,
+				UserId = userRequestViewModel.UserId,
+				WorkHours = userRequestViewModel.WorkHours,
+			};
+			await userRequestRepository.AddAsync(userRequest);
+		}
+
+		public async Task DeleteUserRequestAsync(string id)
+		{
+			UserRequest userRequest = await userRequestRepository.GetByIdAsync(id)
+			?? throw new ArgumentException($"User request with id `{id}` not found");
+
+			if (!await userRequestRepository.DeleteAsync(userRequest))
+			{
+				throw new ArgumentException($"User request with id `{id}` couldn't be removed");
 			}
 		}
 
 		public async Task<List<UserRequest>> GetAllAsync()
 		{
-			return await context.UserRequests.ToListAsync();
+			return await userRequestRepository
+			.GetAllAttached()
+			.Include(r => r.User)
+			.ToListAsync();
 		}
 
 		public async Task<UserRequest?> GetByIdAsync(string id)
 		{
-			var userRequest = await context.UserRequests.FindAsync(id);
+			UserRequest userRequest = await userRequestRepository.GetByIdAsync(id)
+			?? throw new ArgumentException($"Disease report with id `{id}` not found");
+
 			return userRequest;
 		}
 
-		public async Task UpdateAsync(UserRequest userRequest)
+		public async Task UpdateUserRequestAsync(UserRequestViewModel userRequestViewModel)
 		{
-			var existing = await context.UserRequests.FindAsync(userRequest.Id);
-			if (existing == null)
-			{
-				throw new ArgumentException($"User request with ID '{userRequest.Id}' not found.");
-			}
+			var existingRequest = await userRequestRepository
+			.GetByIdAsync(userRequestViewModel.Id)
+			?? throw new ArgumentException($"User request with id `{userRequestViewModel.Id}` not found");
 
-			existing.WorkHours = userRequest.WorkHours;
-			existing.Colour = userRequest.Colour;
-			existing.Name = userRequest.Name;
-			existing.User=userRequest.User;
-			existing.Plant=userRequest.Plant;
-			existing.UserId = userRequest.UserId;
+			existingRequest.Name = userRequestViewModel.Name;
+			existingRequest.Colour = userRequestViewModel.Colour;
+			existingRequest.Plant = userRequestViewModel.Plant;
+			existingRequest.PlantType = userRequestViewModel.PlantType;
+			existingRequest.User = userRequestViewModel.User;
+			existingRequest.UserId = userRequestViewModel.UserId;
+			existingRequest.WorkHours = userRequestViewModel.WorkHours;
+
+			if (!await userRequestRepository.UpdateAsync(existingRequest))
+			{
+				throw new ArgumentException($"User request with id `{userRequestViewModel.Id}` couldn't be updated");
+			}
 		}
 	}
 }

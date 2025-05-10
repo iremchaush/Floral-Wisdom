@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FloralWisdom.Data.Migrations
 {
     [DbContext(typeof(FloralWisdomDbContext))]
-    [Migration("20250503171045_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20250504154800_InitialMIgration")]
+    partial class InitialMIgration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

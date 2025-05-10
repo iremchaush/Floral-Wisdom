@@ -1,6 +1,7 @@
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Implementations;
 using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.ViewModels;
 
 namespace FloralWisdom.ConsoleApp.UI
 {
@@ -57,7 +58,7 @@ namespace FloralWisdom.ConsoleApp.UI
 			Console.Write("Password: ");
 			var password = Console.ReadLine();
 
-			var user = new User
+			var user = new UserViewModel
 			{
 				Id = Guid.NewGuid().ToString(),
 				Username = name!,
@@ -65,8 +66,7 @@ namespace FloralWisdom.ConsoleApp.UI
 				Password = password!
 			};
 
-			await userService.AddAsync(user);
-			await userService.SaveChangesAsync();
+			await userService.CreateUserAsync(user);
 			Console.WriteLine("User added.");
 		}
 
@@ -93,8 +93,14 @@ namespace FloralWisdom.ConsoleApp.UI
 				user.Username = string.IsNullOrWhiteSpace(name) ? user.Username : name;
 				user.Email = string.IsNullOrWhiteSpace(email) ? user.Email : email;
 
-				await userService.UpdateAsync(user);
-				await userService.SaveChangesAsync();
+				var userViewModel = new UserViewModel
+				{
+					Id = Guid.NewGuid().ToString(),
+					Username = name!,
+					Email = email!
+				};
+
+				await userService.UpdateUserAsync(userViewModel);
 				Console.WriteLine("User updated.");
 			}
 		}
@@ -107,8 +113,7 @@ namespace FloralWisdom.ConsoleApp.UI
 			string id = Console.ReadLine();
 			if (!string.IsNullOrEmpty(id))
 			{
-				await userService.DeleteAsync(id);
-				await userService.SaveChangesAsync();
+				await userService.DeleteUserAsync(id);
 				Console.WriteLine("User deleted.");
 			}
 		}

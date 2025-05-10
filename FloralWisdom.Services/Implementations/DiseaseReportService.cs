@@ -46,7 +46,7 @@ namespace FloralWisdom.Services.Implementations
 			DiseaseReport diseaseReport = await diseaseReportRepository.GetByIdAsync(id)
 			?? throw new ArgumentException($"Disease report with id `{id}` not found");
 
-			return diseaseReport; ;
+			return diseaseReport; 
 		}
 
 		public async Task UpdateDiseaseReportAsync(DiseaseReportViewModel diseaseReportViewModel)

@@ -2,6 +2,7 @@ using FloralWisdom.Models;
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Implementations;
 using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.ViewModels;
 
 namespace FloralWisdom.ConsoleApp.UI
 {
@@ -63,7 +64,7 @@ namespace FloralWisdom.ConsoleApp.UI
             Console.Write("Sunlight Requirement: ");
             var sunlight = Console.ReadLine();
 
-            var plant = new Plant
+            var plant = new PlantViewModel
             {
 				Id = Guid.NewGuid().ToString(),
 				Name = name!,
@@ -73,8 +74,7 @@ namespace FloralWisdom.ConsoleApp.UI
                 SunlightRequirement = sunlight!
             };
 
-            await plantService.AddAsync(plant);
-			await plantService.SaveChangesAsync();
+            await plantService.CreatePlantAsync(plant);
 			Console.WriteLine("Plant added.");
         }
 
@@ -114,8 +114,17 @@ namespace FloralWisdom.ConsoleApp.UI
                 plant.SunlightRequirement = string.IsNullOrWhiteSpace(sunlight) ? plant.SunlightRequirement : sunlight;
                 if (water > 0) plant.WateringFrequency = water;
 
-                await plantService.UpdateAsync(plant);
-				await plantService.SaveChangesAsync();
+				var plantViewModel = new PlantViewModel
+				{
+					Id = Guid.NewGuid().ToString(),
+					Name = name!,
+					ScientificName = sciName!,
+					Description = description!,
+					WateringFrequency = water!,
+					SunlightRequirement = sunlight!
+				};
+
+				await plantService.UpdatePlantAsync(plantViewModel);
 				Console.WriteLine("Plant updated.");
             }
         }
@@ -128,8 +137,7 @@ namespace FloralWisdom.ConsoleApp.UI
             string id = Console.ReadLine();
             if (!string.IsNullOrEmpty(id))
             {
-                await plantService.DeleteAsync(id);
-				await plantService.SaveChangesAsync();
+                await plantService.DeletePlantAsync(id);
 				Console.WriteLine("Plant deleted.");
             }
         }

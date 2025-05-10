@@ -1,6 +1,7 @@
 using FloralWisdom.Data;
 using FloralWisdom.Models.Entities;
 using FloralWisdom.Services.Interfaces;
+using FloralWisdom.Services.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,7 +108,7 @@ namespace FloralWisdom.ConsoleApp.UI
             Console.Write("Colour: ");
             var colour = Console.ReadLine();
 
-            var userRequest = new UserRequest
+            var userRequest = new UserRequestViewModel
             {
 				Id = Guid.NewGuid().ToString(),
 				Name = name!,
@@ -116,8 +117,7 @@ namespace FloralWisdom.ConsoleApp.UI
                 Colour = colour!
             };
 
-            await userRequestService.AddAsync(userRequest);
-			await userRequestService.SaveChangesAsync();
+            await userRequestService.CreateUserRequestAsync(userRequest);
 			Console.WriteLine("User Request recorded.");
         }
 
@@ -126,8 +126,7 @@ namespace FloralWisdom.ConsoleApp.UI
             await ShowAllAsync();
 
             string id = ReadString("\nEnter User Request ID to delete: ");
-            await userRequestService.DeleteAsync(id);
-			await userRequestService.SaveChangesAsync();
+            await userRequestService.DeleteUserRequestAsync(id);
 			Console.WriteLine("User Request deleted.");
         }
 
