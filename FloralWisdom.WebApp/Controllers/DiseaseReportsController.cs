@@ -53,10 +53,11 @@ namespace FloralWisdom.WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Diagnosis,RecommendedTreatment,PlantId")] DiseaseReport diseaseReport)
+        public async Task<IActionResult> Create([Bind("Diagnosis,RecommendedTreatment,PlantId")] DiseaseReport diseaseReport)
         {
             if (diseaseReport!=null)
             {
+                diseaseReport.Id = Guid.NewGuid().ToString();
                 _context.Add(diseaseReport);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
