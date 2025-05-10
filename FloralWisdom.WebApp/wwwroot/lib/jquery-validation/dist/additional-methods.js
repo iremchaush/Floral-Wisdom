@@ -59,7 +59,8 @@ $.validator.addMethod( "abaRoutingNumber", function( value ) {
 		return false;
 	}
 
-	// Calc the checksum
+	// 
+	the checksum
 	// https://en.wikipedia.org/wiki/ABA_routing_transit_number
 	for ( var i = 0; i < length; i += 3 ) {
 		checksum +=	parseInt( tokens[ i ], 10 )     * 3 +

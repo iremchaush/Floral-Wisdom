@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Account\**" />
+    <Content Remove="Controllers\Account\**" />
+    <EmbeddedResource Remove="Controllers\Account\**" />
+    <None Remove="Controllers\Account\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
@@ -20,10 +27,6 @@
     <ProjectReference Include="..\FloralWisdom.Data\FloralWisdom.Data.csproj" />
     <ProjectReference Include="..\FloralWisdom.Models\FloralWisdom.Models.csproj" />
     <ProjectReference Include="..\FloralWisdom.Services\FloralWisdom.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\Account\" />
   </ItemGroup>
 
 </Project>
