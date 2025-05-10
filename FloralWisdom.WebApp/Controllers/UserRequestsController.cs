@@ -57,10 +57,11 @@ namespace FloralWisdom.WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,WorkHours,PlantType,Colour,UserId")] UserRequest userRequest)
+        public async Task<IActionResult> Create([Bind("Name,WorkHours,PlantType,Colour,UserId")] UserRequest userRequest)
         {
             if (userRequest!=null)
             {
+                userRequest.Id = Guid.NewGuid().ToString();
                 _context.Add(userRequest);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -98,7 +99,7 @@ namespace FloralWisdom.WebApp.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) // error in here
             {
                 try
                 {
